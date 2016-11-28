@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.min.js"></script>
+		<script>
+			$(function(){
+				console.log(1);
+				$.ajax({
+				url: "http://service.myzhenzhen.com/zzht/v1/api/shop/order",
+				data:{'order': { 
+								'buyerId': 10038, 
+								'sellerId': 10035, 
+								'liveId': 11038, 
+								'amount': 1, 
+								'currency': 'cny', 
+								'channel': 'wx', 
+								'clientIp': '127.0.0.1', 
+								'addressId': '10050', 
+								'message':'麻烦卖家帮我把奶粉用记号笔标记个五角星', 
+								'user_coupon_id':10001, 
+								'payGoodsInfo':'[{\'goodsId\':21161,\'num\':3,\'sizeId\':2375}]', 
+								'task_id':1000 
+								} },
+				type: "get",
+				dataType:'json',
+				success:function(res){
+					console.log(res)
+				}
+				});
+
+			})
+		</script>
+	</head>
+	<body>
+	</body>
+	
+</html>
