@@ -39,16 +39,16 @@ app.route('/api/login').get(function(req, res){
 		res.send(body);	
 	})
 });
-app.route('api/details').get(function(req,res){
-	console.log(req.query);
-	requset.get({
-		url:'http://service.myzhenzhen.com/zzht/v1/api/shop/goods/33137',
-		form:req.query
-	},function(err,httpResponse,body){
-		console.log(body);
-		res.send(body);
-	})
-})
+//app.route('api/details').get(function(req,res){
+//	console.log(req.query);
+//	requset.get({
+//		url:'http://service.myzhenzhen.com/zzht/v1/api/shop/goods/33137',
+//		form:req.query
+//	},function(err,httpResponse,body){
+//		console.log(body);
+//		res.send(body);
+//	})
+//})
 
 
 
