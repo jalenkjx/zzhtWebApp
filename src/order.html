@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title>订单确认</title>
+		<link rel="stylesheet" href="css/order.css" />
+		<script src="js/require.js"></script>
+		<script src="js/config.js"></script>
+		
+	</head>
+	<body>
+		<div class="wrapper">
+			<header>
+				<span></span>
+				<h1>订单确认</h1>
+			</header>
+			<section>
+				<div class="consignee">
+					<div class="add_address">
+						<p>您当前还没有收获地址，赶快添加吧</p>
+					</div>
+					<div class="consignee_info" style="display:none;">
+						收货人：<span class="info_name">张三</span>
+						<span class="phoneNum">12345678945</span>
+						<p class="info_address">收货地址：<span>北京市海淀区农大南路树村路万霖大厦二层1234室</span></p>
+					</div>
+					<span class="rightIcon"></span>
+				</div>
+				<div class="order_info">
+					<div class="imgbox"><img src="" alt="" /></div>
+					<div class="order_detail">
+						<h3>荷兰原产  牛栏婴幼儿奶粉专场Nutrilon 1段 不上火的奶粉</h3>
+						<p class="price">
+							￥<span>180</span>.00
+							<b>×<i>2</i></b>
+						</p>
+					</div>
+				</div>
+				<div class="message">
+					
+					<p>留言：
+						
+						<input type="text" placeholder="请填写与买手达成一致的要求" />
+					</p>
+				</div>
+				<div class="cost">
+					<p>运费：￥<span>50</span></p>
+				</div>
+				<div class="delivery ">
+					<p>配送：<span>国际物流+国内物流</span></p>
+				</div>
+				<div class="pay">
+					<h4>支付方式</h4>
+					<ul class="pay_method">
+						<li class="active"><p>支付宝支付<span>账户安全保障中</span></p></li>
+						<li><p>微信支付<span>绿色通道，安全便捷</span></p></li>
+						<li><p>账户支付<span>享受平台优惠</span></p></li>
+					</ul>
+				</div>
+			</section>
+			<footer>
+				<a href="javascript:;">结算</a>
+				<p>合计：<span>￥<i>216</i></span></p>
+			</footer>
+		</div>
+	</body>
+	<script src="js/order.js"></script>
+</html>
