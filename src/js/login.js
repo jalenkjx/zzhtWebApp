@@ -1,9 +1,22 @@
+
+//rem
+var winWidth = window.innerWidth;
+var fontSize = winWidth/750*100;
+var html = document.documentElement;
+html.style.fontSize = fontSize + "px";
+window.onresize = function(){
+	var winWidth = window.innerWidth;
+	var fontSize = winWidth/750*100;
+	var html = document.documentElement;
+	html.style.fontSize = fontSize + "px";
+}
+
 require([
 			'jquery',//jquery依赖
-			'rem',//设计稿处理
+			//'rem',//设计稿处理
 			'loginAjax'//给后台发送请求
 			],
-			function($,Rem,loginAjax){
+			function($,loginAjax){
 				$(function(){
 					
 					//点击切换密码状态

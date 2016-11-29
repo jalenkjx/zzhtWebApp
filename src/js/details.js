@@ -1,10 +1,21 @@
+var winWidth = window.innerWidth;
+var fontSize = winWidth/750*100;
+var html = document.documentElement;
+html.style.fontSize = fontSize + "px";
+window.onresize = function(){
+	var winWidth = window.innerWidth;
+	var fontSize = winWidth/750*100;
+	var html = document.documentElement;
+	html.style.fontSize = fontSize + "px";
+}
+
 require([
 			'jquery',//jquery依赖
-			'rem',//设计稿处理
+			//'rem',//设计稿处理
 			'swiper',
 			'detailAjax'
 			],
-			function($,Rem,Swiper){
+			function($,Swiper){
 				
 				$(function(){
 					//增加购买数量

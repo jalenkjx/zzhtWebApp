@@ -1,11 +1,6 @@
 @charset "utf-8";
-
 @import "reset.css";
-div{
-    box-sizing: border-box;
-}
 .wrapper{
-    overflow: hidden;
     width:100%;
     header{
         border:1px solid #e6e6e6;
@@ -29,7 +24,6 @@ div{
             text-align:center;
         }
     }
-
     .formInfo{
         overflow: hidden;
         width:100%;
@@ -69,11 +63,31 @@ div{
             }
         }
         div:nth-child(2){
+            margin-top:.4rem;
+            height:.6rem;
+            border-bottom:1px solid #b7b7b7;
+            input{
+                display:block;
+                height:.4rem;
+                float:left;
+                width:4rem;
+            }
+            span{
+                float:left;
+                padding-left:.1rem;
+                line-height:.4rem;
+                height:.4rem;
+                border-left:1px solid #B7B7B7;
+                color:#F13B51;
+            }
+        }
+        div:nth-child(3){
             position:relative;
             margin-top:.4rem;
             border-bottom:1px solid #b7b7b7;
             height:.6rem;
             input{
+                width:4rem;
                 display:block;
                 border:0;
                 height:.4rem;
@@ -97,8 +111,7 @@ div{
                 background-size:.43rem auto;
             }
         }
-        #logIn{
-            
+        #register{
             border:0;
             display:block;
             background:#f13b51;
@@ -110,41 +123,33 @@ div{
             color:#fff;
             
         }
-        .forgetPsw{
-            overflow: hidden;
-            span:nth-child(1){
-                font-size:.28rem;
-                float:left;
-                color:#F13B51; 
+        .agreement{
+            margin-left:.8rem;
+            position:relative;
+            input[type="checkbox"]{
+                visibility: hidden;
             }
-            span:nth-child(2){
-                font-size:.28rem;
-                float:right;
+            label{
+                
+                span{
+                    display:inline-block;
+                    width:.24rem;
+                    height:.24rem;
+                    position:absolute;
+                    background:url(../img/checked.png) no-repeat;
+                    background-size:.24rem;
+                    top:.03rem;
+                    left:0;
+                }
+                .false{
+                    background:url(../img/unchecked.png) no-repeat;
+                    background-size:.24rem;
+                }
+            }
+            span{
+                font-size:.24rem;
                 color:#999;
             }
         }
     }//formInfo
-    .separate{
-        margin-top:4.4rem;
-    }
-    .cooperation{
-        padding:.78rem 1.6rem .7rem 1.6rem;
-        ul{
-            overflow:hidden;
-            width:100%;
-            li{
-                list-style:none;
-                float:left;
-                width:.9rem;
-                height:.9rem;
-                img{
-                    width:.9rem;
-                    height:auto;
-                }
-            }
-            li:nth-child(2),li:nth-child(3){
-                    margin-left:.8rem;
-            }
-        }
-    }
-}//wrapper
+}
