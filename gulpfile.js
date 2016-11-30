@@ -66,7 +66,7 @@ gulp.task("css1",function(){
 //      	cssnano       //压缩css
         ]))
         //压缩 css
-//      .pipe(minCss())
+      .pipe(minCss())
         //输出到指定目录
         .pipe(gulp.dest(path.dest + "css/"))
 });
@@ -82,7 +82,7 @@ gulp.task("css2",function(){
 //      	cssnano       //压缩css
         ]))
         //压缩 css
-//      .pipe(minCss())
+      .pipe(minCss())
         //输出到指定目录
         .pipe(gulp.dest(path.dest + "css/"))
 })

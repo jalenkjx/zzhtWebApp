@@ -5,6 +5,7 @@
     width:100%;
     height:auto;
     background:#f0f0f0;
+    overflow-x: hidden;
     .headfixed{
         position:fixed;
         width:7.5rem;
@@ -14,7 +15,7 @@
             display:block;
             height:auto;
             img{
-                width:7.5rem;
+                width:100%;
                 height:auto;
             }
         }
@@ -162,7 +163,7 @@
         //规格弹窗
         .popUp{
             width:100%;
-            height:8.84rem;
+            height:8rem;
             background:#fff;
             position:fixed;
             bottom:0;
@@ -293,7 +294,7 @@
                 line-height:.9rem;
                 color:#fff;
                 background:#F13B51;
-                margin-top:2.6rem;
+                margin-top:1.9rem;
                 border:0;
             }
             
@@ -357,8 +358,9 @@
             height:.86rem;
             width:100%;
             dl{
+                box-sizing: border-box;
                 float:left;
-                width:3.75rem;
+                width:3.2rem;
                 text-align: center;
                 dt{
                     color: #333;
@@ -381,7 +383,7 @@
             margin-bottom: .2rem;
             a{
                 box-sizing: border-box;
-                width: 3.4rem;
+                width: 3rem;
                 display: inline-block;
                 padding: .1rem .6rem;
                 border: 1px solid #e6e6e6;

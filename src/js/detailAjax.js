@@ -81,14 +81,23 @@ define(['jquery'],function($){
 				$('input','.c_box').eq(i).attr('value',data.goodsSizes[i].name);
 			}
 			//规格图片
-			$('.title').children('.imgbox').children().attr('src','http://o6uda1nl0.bkt.clouddn.com/'+data.goodsImages[2].imgName)
+			$('.title').children('.imgbox').children().attr('src','http://o6uda1nl0.bkt.clouddn.com/'+data.goodsImages[2].imgName);
+			//存储图片url
+			window.localStorage.setItem("imgurl",'http://o6uda1nl0.bkt.clouddn.com/'+data.goodsImages[2].imgName);
+			//默认存储第一个规格id
+			window.localStorage.setItem("sizeId",data.goodsSizes[0].sizeId);
 			//规格选择
+			
 			$('input','.c_box').click(function(){
 				var i = $(this).index()
 				$(this).addClass('active').siblings().removeClass('active');
 				$('i','.price').html(data.goodsSizes[i].price);
 				$('i','.stock').html(data.goodsSizes[i].inventory);
-				$('i','.choose').html(data.goodsSizes[i].name)
+				$('i','.choose').html(data.goodsSizes[i].name);
+				//存储规格id
+				window.localStorage.setItem("sizeId",data.goodsSizes[i].sizeId);
+				//存储商品单价
+				window.localStorage.setItem("unitprice",data.goodsSizes[i].price);
 			})
 			//默认规格价格
 			$('i','.price').html(data.goodsSizes[0].price);
@@ -102,6 +111,16 @@ define(['jquery'],function($){
 			//购买说明
 			//console.log(data.buyExplain)
 			$('.buyexplain').html(data.buyExplain);
-
+			
+			//点击规格里的下单按钮     存储数据并跳转；
+			$('#createOrder').click(function(e){
+				e.stopPropagation();
+				//存储商品id
+				window.localStorage.setItem("goods_id",goodid);
+				//存储购买数量
+				window.localStorage.setItem("buyNum",$('.num').val())
+				
+				window.location.href = "Login.html";
+			})
 		})
 })

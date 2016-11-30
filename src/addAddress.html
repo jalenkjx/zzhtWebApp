@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<meta charset="UTF-8">
+		<title>新增收货地址</title>
+		<link rel="stylesheet" href="css/addAddress.css" />
+		<script src="js/require.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/addAddress.js"></script>
+	</head>
+	<body>
+		
+		<div class="wrapper">
+			<header>
+				<span></span>
+				<h1>收获地址管理</h1>
+			</header>
+			<div class="info">
+				<div class="name">
+					<span>收货人姓名：</span><input type="text" placeholder="请输入收货人姓名"/>
+				</div>
+				<div>
+					<span>身份证号码：</span><input type="text" placeholder="用于商品入境申报，请如实填写"/>
+				</div>
+				<div>
+					<span>手机号码：</span><input type="text"  placeholder="请输入手机号码"/> 
+				</div>
+				<div>
+					<span>邮政编码：</span><input type="text" placeholder="请输入邮政编码"/>
+				</div>
+				<div>
+					<span>省、市、区：</span><input type="text" id="choose" readonly="readonly" placeholder="请选择省市" />
+				</div>
+				<div>
+					<span>详细地址：</span><input placeholder="详细地址" required="required"></input>
+				</div>
+				<div class="setDefault">
+					<label class="label">
+						<span></span>
+						<input type="checkbox" checked id="ch"/>
+						<i>设为默认收货地址</i>
+					</label>	
+						
+				</div>
+			</div>
+			<footer>
+				<a href="javascript:;">保存收货地址</a>
+			</footer>
+		</div>
+	</body>
+</html>
