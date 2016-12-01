@@ -1,8 +1,6 @@
 define(['jquery'],function($){
 	function check(){
 		$('#logIn').click(function(){
-			{	
-				
 				//获取手机号和密码
 				var phoneNum = $('#phoneNumber').val();
 				var pwd = $('#pwd').val();
@@ -13,6 +11,7 @@ define(['jquery'],function($){
 					var client_id;
 					var client_secret;
 		            var u = navigator.userAgent;
+		            console.log(u);
 					var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 					var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 					//console.log(isiOS);
@@ -21,6 +20,8 @@ define(['jquery'],function($){
 						client_secret = '4770414c283a20347c7b553650425773';
 					}else{
 						client_id = '5e572e694e4d61763b567059273a4d3d';
+						//client_id = '6725063e575b34ea1f6da9c444d54e14';
+						//client_secret = 'd1cb90b357cf6ba3d494cb5795565b4e';
 						client_secret = '316457735c4055642744596b302e2151';
 					}
 					//代理跨域
@@ -35,7 +36,7 @@ define(['jquery'],function($){
 						}
 					,function(res){
 						//存储access_token;
-						//console.log(res)
+						console.log(res)
 						if(res.error_description=="The user is not found"){
 							alert('该用户未注册，请先注册');
 						}else if(res.error_description=="code:22013,message:`Error.Incorrect password.`"){
@@ -46,49 +47,59 @@ define(['jquery'],function($){
 							//console.log(token);
 							//window.location.href = "order.html";
 //							$.ajax({
-//								type:"post",
-//								url:"http://192.168.199.127/zzht/v1/api/users/getUserByLoginName",
+//								type:"POST",
+//								url:"http://192.168.199.126/zzht/v1/api/users/getUserByLoginName",
 //								async:true,
 //								
-//								accepts:{
-//									'Content-Type': 'application/x-www-form-urlencoded',
+//								headers:{
+//									//'Content-Type': 'application/x-www-form-urlencoded',
 //									'Authorization': 'Bearer c96d6765-2cc8-4e26-bdbb-d8d81f9a347c'
 //								},
 //								data:{
-//									
+//									cors:'true',
 //									loginName:phoneNum,
 //									thirdType:' '
 //								},
 //								success:function(res){
 //									console.log(res);
-//								}
+//								},
+//								error: function (jqXHR,  textStatus,  errorThrown) {
+//							      console.log(textStatus);
+//							      console.log(jqXHR);
+//							    }
 //							});
-						}
+							$.ajax({ 
+								type: "post", 
+								dataType: 'json',
+								url: "http://192.168.199.127/zzht/v1/api/users/getUserByLoginName", 
+								data:{
+									  'loginName':18234482189,
+									  'thirdType':' ',
+									  'cors':'true'
+										},
+							    //beforeSend: function (xhr) {
+								//	xhr.setRequestHeader("Authorization", "Bearer c96d6765-2cc8-4e26-bdbb-d8d81f9a347c");
+								//},
+								headers : {'Authorization': 'Bearer c96d6765-2cc8-4e26-bdbb-d8d81f9a347c'},
+							    complete: function (resp) {
+							      console.log(resp);
+							    },
+							    error: function (jqXHR,  textStatus,  errorThrown) {
+							      console.log(textStatus);
+							    }
+							});
+
+						}//else
 						
-					},'json');
-					
-					$.ajax('http://192.168.199.127/zzht/v1/api/users/getUserByLoginName',
-					{
-						type: 'post',
-						dataType: 'json',
-					    beforeSend: function (xhr) {
-					      xhr.setRequestHeader("Authorization", "Bearer c96d6765-2cc8-4e26-bdbb-d8d81f9a347c")
-					    },
-					    complete: function (resp) {
-					      console.log(resp);
-					    },
-					    error: function (jqXHR,  textStatus,  errorThrown) {
-					      console.log(textStatus);
-					    }
-					  }
-					);
+					},'json');//get请求
+
 				}//else
 				
 
-			}//click
-		})
+			})//click
+		}
 		
-	}
+	
 	
 	return check();
 })

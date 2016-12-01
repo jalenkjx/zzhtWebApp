@@ -24,4 +24,7 @@ require(['jquery'],function($){
 		var i = $(this).parents('li').index();
 		$('li').eq(i).remove();
 	})
+	
+	
+	
 })

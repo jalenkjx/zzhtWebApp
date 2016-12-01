@@ -2,7 +2,7 @@ define(['jquery'],function($){
 	
 	var imgLink = 'http://o6uda1nl0.bkt.clouddn.com/';//内网
 	//var imgLink = 'http://7xrr05.com1.z0.glb.clouddn.com/';//外网
-	var goodid = getUrlParam('goods_id');
+	
 	//获取url中的参数
 	function getUrlParam(name) {
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -11,7 +11,7 @@ define(['jquery'],function($){
 		return unescape(r[2]);
 		return null; //返回参数值
 	}
-
+	var goodid = getUrlParam('goods_id');
 	$.get('http://192.168.199.127/zzht/v1/api/shop/goods/'+goodid,
 		{
 			'goodsId':goodid
@@ -83,7 +83,7 @@ define(['jquery'],function($){
 			//规格图片
 			$('.title').children('.imgbox').children().attr('src','http://o6uda1nl0.bkt.clouddn.com/'+data.goodsImages[2].imgName);
 			//存储图片url
-			window.localStorage.setItem("imgurl",'http://o6uda1nl0.bkt.clouddn.com/'+data.goodsImages[2].imgName);
+			window.localStorage.setItem("imgurl",imgLink+data.goodsImages[2].imgName);
 			//默认存储第一个规格id
 			window.localStorage.setItem("sizeId",data.goodsSizes[0].sizeId);
 			//规格选择
