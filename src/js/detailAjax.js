@@ -1,8 +1,8 @@
-define(['jquery'],function($){
+define(['jquery','swiper'],function($){
 	
 	var imgLink = 'http://o6uda1nl0.bkt.clouddn.com/';//内网
 	//var imgLink = 'http://7xrr05.com1.z0.glb.clouddn.com/';//外网
-	
+	var goodid = getUrlParam('goods_id');
 	//获取url中的参数
 	function getUrlParam(name) {
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -11,12 +11,17 @@ define(['jquery'],function($){
 		return unescape(r[2]);
 		return null; //返回参数值
 	}
-	var goodid = getUrlParam('goods_id');
-	$.get('http://192.168.199.127/zzht/v1/api/shop/goods/'+goodid,
+	
+	console.log(goodid);
+	$.get('http://192.168.199.127:81/zzht/v1/api/shop/goods/'+goodid,
+			//'/api/details',
 		{
 			'goodsId':goodid
 		},
 		function(res){
+			//console.log(resa);
+			//var res = JSON.parse(resa);
+			console.log(res)
 			var data = res.datas;
 			console.log(data);
 			
@@ -38,11 +43,16 @@ define(['jquery'],function($){
 					    pagination: '.swiper-pagination',
 					    autoplayDisableOnInteraction:false,
 					  }) 
-			//商品价格
-			$('.goodPriceInt').html(data.actualPrice);
+			//保存商品运费
+			window.localStorage.setItem('expressCost',data.expressCost);
+			//保存卖家id
+			window.localStorage.setItem('sellerId',data.userDTO.userId);
+			//商品价格(默认设置第一种规格价格)
+			$('.goodPriceInt').html(data.goodsSizes[0].price);
 			//商品名称
 			var nameHtml = '<span>'+data.name+'</span>';
 			$('.goodName').html(nameHtml);
+			window.localStorage.setItem('goodname',data.name);
 			//推荐语
 			var recommend = '<span>'+data.recommend+'</span>';
 			$('.signature').html(recommend);

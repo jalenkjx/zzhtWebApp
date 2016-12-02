@@ -5,7 +5,7 @@ var request = require('request');
 var bodyParser = require('body-parser');
 
 var app = express();
- 
+//登录获取token跨域
 app.route('/api/login').get(function(req, res){
 
 	//console.log(req.query);
@@ -17,7 +17,17 @@ app.route('/api/login').get(function(req, res){
 		res.send(body);	
 	})
 });
-
+//获取商品详情跨域
+app.route('/api/details').get(function(req,res){
+	console.log(req.query);
+	console.log(req.query.goodsId);
+	request.get({
+		url:"http://192.168.199.127/zzht/v1/api/shop/goods/"+req.query.goodsId,
+		form:req.query
+	},function(err,resp,body){
+		res.send(body)
+	})
+})
 
 app.use(bodyParser.urlencoded({    
 extended: true

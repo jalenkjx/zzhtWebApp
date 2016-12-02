@@ -11,7 +11,7 @@ define(['jquery'],function($){
 					var client_id;
 					var client_secret;
 		            var u = navigator.userAgent;
-		            console.log(u);
+		            //console.log(u);
 					var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 					var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 					//console.log(isiOS);
@@ -25,7 +25,8 @@ define(['jquery'],function($){
 						client_secret = '316457735c4055642744596b302e2151';
 					}
 					//代理跨域
-					$.get('/api/login',
+					$.post(//'/api/login',
+							'http://192.168.199.127:81/zzht/oauth/token',
 						{
 							//传递参数
 							"grant_type":"password",
@@ -36,6 +37,7 @@ define(['jquery'],function($){
 						}
 					,function(res){
 						//存储access_token;
+						//window.location.href = "/order.html";
 						console.log(res)
 						if(res.error_description=="The user is not found"){
 							alert('该用户未注册，请先注册');
@@ -44,52 +46,34 @@ define(['jquery'],function($){
 						}else{
 							window.localStorage.setItem('access_token', res.access_token);
 							var token = window.localStorage.getItem('access_token');
-							//console.log(token);
+							console.log(token);
 							//window.location.href = "order.html";
-//							$.ajax({
-//								type:"POST",
-//								url:"http://192.168.199.126/zzht/v1/api/users/getUserByLoginName",
-//								async:true,
-//								
-//								headers:{
-//									//'Content-Type': 'application/x-www-form-urlencoded',
-//									'Authorization': 'Bearer c96d6765-2cc8-4e26-bdbb-d8d81f9a347c'
-//								},
-//								data:{
-//									cors:'true',
-//									loginName:phoneNum,
-//									thirdType:' '
-//								},
-//								success:function(res){
-//									console.log(res);
-//								},
-//								error: function (jqXHR,  textStatus,  errorThrown) {
-//							      console.log(textStatus);
-//							      console.log(jqXHR);
-//							    }
-//							});
 							$.ajax({ 
 								type: "post", 
 								dataType: 'json',
-								url: "http://192.168.199.127/zzht/v1/api/users/getUserByLoginName", 
+								//crossDomain:true,
+								url: "http://192.168.199.127:81/zzht/v1/api/users/getUserByLoginName", 
 								data:{
-									  'loginName':18234482189,
-									  'thirdType':' ',
-									  'cors':'true'
-										},
-							    //beforeSend: function (xhr) {
-								//	xhr.setRequestHeader("Authorization", "Bearer c96d6765-2cc8-4e26-bdbb-d8d81f9a347c");
-								//},
-								headers : {'Authorization': 'Bearer c96d6765-2cc8-4e26-bdbb-d8d81f9a347c'},
-							    complete: function (resp) {
-							      console.log(resp);
-							    },
-							    error: function (jqXHR,  textStatus,  errorThrown) {
-							      console.log(textStatus);
+									  'loginName':phoneNum,
+									  'thirdType':' '
+									},
+								headers : {
+									'Authorization': 'Bearer '+token,
+									'Content-Type': 'application/x-www-form-urlencoded'
+								},
+							    complete: function (res) {
+							      //console.log(res.responseJSON.user);
+							      //获取用户的登录信息
+							      var buyerInfo = JSON.parse(res.responseJSON.user);
+							      console.log(buyerInfo);
+							      //存储买家id
+							      window.localStorage.setItem('userId',buyerInfo.userId);
+							      window.location.href = '/order.html';
 							    }
 							});
 
 						}//else
+						
 						
 					},'json');//get请求
 

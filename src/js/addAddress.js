@@ -9,7 +9,7 @@ window.onresize = function(){
 	var html = document.documentElement;
 	html.style.fontSize = fontSize + "px";
 }
-require(['jquery','LAreaData1','LArea'],function($,LAreaData1,LArea){
+require(['jquery','LAreaData1','LArea','addAjax'],function($,LAreaData1,LArea){
 	//地市选择三级联动
 	var area = new LArea();
 		area.init({
