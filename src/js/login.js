@@ -16,18 +16,20 @@ require([
 			//'rem',//设计稿处理
 			'loginAjax'//给后台发送请求
 			],
-			function($,loginAjax){
-				$(function(){
-					
-					//点击切换密码状态
-					$('.eye').click(function(){
-						$(this).toggleClass('switch');
-						$(this).prev().toggleClass('pwd');
-						if($('#pwd').hasClass('pwd')){
-							$('#pwd').attr('type','password');
-						}else{
-							$('#pwd').attr('type','text');
-						}
-					});
+			function($,loginAjax){	
+				//点击切换密码状态
+				$('.eye').click(function(){
+					$(this).toggleClass('switch');
+					$(this).prev().toggleClass('pwd');
+					if($('#pwd').hasClass('pwd')){
+						$('#pwd').attr('type','password');
+					}else{
+						$('#pwd').attr('type','text');
+					}
+				});
+				$('.back').on('click',function(e){
+					e.stopPropagation();
+					window.location.href = "/details.html"
 				})
-			})
+				
+			});

@@ -10,21 +10,13 @@ window.onresize = function(){
 	html.style.fontSize = fontSize + "px";
 }
 
-require(['jquery'],function($){
+require(['jquery','addressAjax'],function($){
 	
-	
-	//选中状态
-	$('li').click(function(e){
+	$('.back').on('click',function(e){
 		e.stopPropagation();
-		$(this).addClass('checked').siblings('li').removeClass('checked');
+		window.location.href = "/order.html"
 	})
-	
-	$('a','li').click(function(e){
-		e.stopPropagation();
-		var i = $(this).parents('li').index();
-		$('li').eq(i).remove();
-	})
-	
+
 	
 	
 })

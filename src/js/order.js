@@ -29,11 +29,15 @@ require(['jquery','orderAjax'],function($){
 		//从localstorage里获取商品单价
 	var unitprice = window.localStorage.getItem('unitprice');
 	$('.price').children('span').html(unitprice);
-		//从localstorage里获取运费
-	var cost = window.localStorage.getItem('expressCost');
-	$('.cost').children('p').children('span').html(cost);
+	
+	
+	
 	//点击收货人跳转用户地址列表页；
 	$('.consignee').eq(0).click(function(){
 		window.location.href = "/address.html";
+	})
+	$('.back').on('click',function(e){
+		e.stopPropagation();
+		window.location.href="/Login.html";
 	})
 })
