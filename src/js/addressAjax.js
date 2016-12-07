@@ -34,25 +34,30 @@ define(['jquery'],function($){
 				//设置默认收货地址接口
 				var addressId = $(this).attr('data-id');
 				var this_=$(this);
-				$.ajax({
-					url:'http://192.168.199.127:81/zzht/v1/api/shop/address/default/'+addressId+'?userId='+userId,
-					type : 'PUT',
-					data:{'userId':userId,'addrId':userId},
-					cache:false,
-					headers:{
-						'Authorization':'Bearer '+token
-					},
-					success:function(res){
-						console.log(res);
-						if(res.res_code==200){
-							this_.addClass('checked').siblings('li').removeClass('checked');
-							this_.children('p').eq(1).prepend('<span class="default">[默认]</span>');
-							this_.siblings().children('p').children('.default').remove();
+				if($(this).children('p').children('.default').length){
+					alert('此地址已经是默认地址');
+				}else{
+					$.ajax({
+						url:'http://192.168.199.127:81/zzht/v1/api/shop/address/default/'+addressId+'?userId='+userId,
+						type : 'PUT',
+						data:{'userId':userId,'addrId':userId},
+						cache:false,
+						headers:{
+							'Authorization':'Bearer '+token
+						},
+						success:function(res){
+							console.log(res);
+							if(res.res_code==200){
+								this_.addClass('checked').siblings('li').removeClass('checked');
+								this_.children('p').eq(1).prepend('<span class="default">[默认]</span>');
+								this_.siblings().children('p').children('.default').remove();
+							}
+							
 						}
-						
-					}
-				})
-			})
+					});
+				}
+				
+			});
 			//删除收货地址
 			$('a','li').click(function(e){
 				e.stopPropagation();

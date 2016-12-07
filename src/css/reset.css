@@ -31,7 +31,10 @@ footer,header,hgroup,menu,nav,section,summary {
 li{
     list-style:none;
 }
-
+button{
+	border:none;
+	outline: none;
+}
 blockquote, q {
     quotes:none;
 }

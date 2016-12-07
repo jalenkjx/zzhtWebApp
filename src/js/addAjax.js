@@ -3,6 +3,7 @@ define(['jquery'], function() {
 	var userId = window.localStorage.getItem('userId');
 	var token = window.localStorage.getItem('access_token');
 	$('#add').click(function(e) {
+		
 		e.stopPropagation();
 		var de = 0;
 		if($('#ch').is(':checked')){
@@ -11,6 +12,9 @@ define(['jquery'], function() {
 		if($('#name').val() == '' | $('#idCard').val() == '' | $('#phoneNum').val() == '' | $('#postcode').val() == '' | $('#choose').val() == '' | $('#detailarea').val() == '') {
 			alert('请输入完整信息');
 		} else {
+			$(this).attr('disabled','disabled');
+			$(this).css('background','#858585')
+			$(this).html('正在保存您收货信息...');
 			var param = JSON.stringify(
 				{"address":{
 							"userId": userId,
@@ -34,8 +38,9 @@ define(['jquery'], function() {
 					'Content-Type': 'application/json'
 				},
 				dataType:'json',
-				complete: function(res){	
+				success: function(res){	
 					console.log(res);
+					window.location.href = "/address.html"
 				}
 			});
 		}

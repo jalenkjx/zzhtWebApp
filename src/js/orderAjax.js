@@ -1,6 +1,6 @@
 //该模块获取收货地址   结算
 
-define(['jquery'],function($){
+define(['jquery','pingpp'],function($,pingpp){
 	//获取用户id
 	var userId = window.localStorage.getItem("userId");
 	//获取token
@@ -119,7 +119,10 @@ define(['jquery'],function($){
 					    
 					    
 			    		//点击结算
-						$('a','footer').on('click',function(e){
+						$('button','footer').on('click',function(e){
+							$(this).attr('disabled','disabled');
+							$(this).css('background','#858585')
+							$(this).html('正在结算...');
 							e.stopPropagation();
 							//创建订单接口
 							$.ajax({
@@ -132,8 +135,21 @@ define(['jquery'],function($){
 									'Authorization':'Bearer '+token,
 									'Content-Type': 'application/json'
 								},
-								complete:function(res){
+								success:function(res){
 									console.log(res);
+									//ping++
+									pingpp.createPayment(res.datas, function(result, err){
+										console.log(result);
+										console.log(err.msg);
+    									console.log(err.extra);
+										if (result == "success") {
+										    // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+										} else if (result == "fail") {
+										    // charge 不正确或者微信公众账号支付失败时会在此处返回
+										} else if (result == "cancel") {
+										    // 微信公众账号支付取消支付
+									  }
+									});
 								}
 							});
 						})//结算按钮点击事件	

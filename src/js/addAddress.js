@@ -10,6 +10,7 @@ window.onresize = function(){
 	html.style.fontSize = fontSize + "px";
 }
 require(['jquery','LAreaData1','LArea','addAjax'],function($,LAreaData1,LArea){
+	window.location.reload;
 	//地市选择三级联动
 	var area = new LArea();
 		area.init({
@@ -33,6 +34,11 @@ require(['jquery','LAreaData1','LArea','addAjax'],function($,LAreaData1,LArea){
 			//$(this).removeClass('false');
 			$(this).addClass('false');
 		}
+	})
+	//返回按钮的页面跳转
+	$('.back').on('click',function(e){
+		e.stopPropagation();
+		window.location.href = "/address.html";
 	})
 
 })

@@ -11,6 +11,7 @@ window.onresize = function(){
 }
 
 require(['jquery','addressAjax'],function($){
+		
 	
 	$('.back').on('click',function(e){
 		e.stopPropagation();

@@ -1,6 +1,7 @@
 define(['jquery'],function($){
 	function check(){
 		$('#logIn').click(function(){
+				
 				//获取手机号和密码
 				var phoneNum = $('#phoneNumber').val();
 				var pwd = $('#pwd').val();
@@ -25,25 +26,34 @@ define(['jquery'],function($){
 						client_secret = '316457735c4055642744596b302e2151';
 					}
 					//代理跨域
-					$.post(//'/api/login',
-							'http://192.168.199.127:81/zzht/oauth/token',
-						{
-							//传递参数
+					$.ajax({
+						url:'http://192.168.199.127:81/zzht/oauth/token',
+						type:'post',
+						data:{
 							"grant_type":"password",
 							"client_id":client_id,
 							"client_secret":client_secret,
 							"username":phoneNum,
 							"password":pwd
-						}
-					,function(res){
-						//存储access_token;
-						//window.location.href = "/order.html";
-						console.log(res)
-						if(res.error_description=="The user is not found"){
-							alert('该用户未注册，请先注册');
-						}else if(res.error_description=="code:22013,message:`Error.Incorrect password.`"){
-							alert('密码输入错误');
-						}else{
+						},
+						headers:{
+							'Content-Type': 'application/x-www-form-urlencoded'
+						},
+						error:function(res){
+							console.log(res.responseJSON.error_description);
+							if(res.responseJSON.error_description=="The user is not found"){
+								alert('该用户未注册，请先注册');
+							}
+							if(res.responseJSON.error_description=="code:22013,message:`Error.Incorrect password.`"){
+								alert('密码输入错误');
+							}
+						},
+						success:function(res){
+							//存储access_token;
+							//console.log(res)
+							$(this).css('background','#858585');
+							$(this).attr('disabled','disabled');
+							$(this).val('正在登录...');
 							window.localStorage.setItem('access_token', res.access_token);
 							var token = window.localStorage.getItem('access_token');
 							console.log(token);
@@ -71,11 +81,8 @@ define(['jquery'],function($){
 							      window.location.href = '/order.html';
 							    }
 							});
-
-						}//else
-						
-						
-					},'json');//get请求
+						}
+					})//获取access_token的post请求;
 
 				}//else
 				

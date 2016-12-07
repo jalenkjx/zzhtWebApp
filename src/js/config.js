@@ -8,7 +8,8 @@ require.config({
 		jquery : "jquery.min",
 		swiper : "swiper.min",
 		LAreaData1:"LAreaData1",
-		LArea:"LArea"
+		LArea:"LArea",
+		pingpp:"pingpp"
 	},
 	//兼容   把非模块化的js文件模块化
 	//把不是以 define 格式的 js 做兼容处理
@@ -29,6 +30,10 @@ require.config({
 		LAreaData1 : {
 			deps : [], 
 			exports : "LAreaData1" //返回的对象
+		},
+		pingpp :{
+			deps : [],
+			exports : "pingpp"
 		}
 	}
 });

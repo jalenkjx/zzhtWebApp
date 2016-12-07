@@ -13,7 +13,7 @@
 		
 		<div class="wrapper">
 			<header>
-				<span></span>
+				<span class="back"></span>
 				<h1>收获地址管理</h1>
 			</header>
 			<div class="info">
@@ -24,10 +24,10 @@
 					<span>身份证号码：</span><input id="idCard" type="text" placeholder="用于商品入境申报，请如实填写"/>
 				</div>
 				<div>
-					<span>手机号码：</span><input id="phoneNum" type="text"  placeholder="请输入手机号码"/> 
+					<span>手机号码：</span><input id="phoneNum" type="number"  placeholder="请输入手机号码"/> 
 				</div>
 				<div>
-					<span>邮政编码：</span><input id="postcode" type="text" placeholder="请输入邮政编码"/>
+					<span>邮政编码：</span><input id="postcode" type="number" placeholder="请输入邮政编码"/>
 				</div>
 				<div>
 					<span>省、市、区：</span><input  type="text" id="choose" readonly="readonly" placeholder="请选择省市" />
@@ -45,7 +45,7 @@
 				</div>
 			</div>
 			<footer>
-				<a href="javascript:;" id="add">保存收货地址</a>
+				<button id="add">保存收货地址</button>
 			</footer>
 		</div>
 	</body>
