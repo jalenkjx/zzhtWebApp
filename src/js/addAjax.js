@@ -27,7 +27,7 @@ define(['jquery'], function() {
 							}
 				});
 			
-			console.log(param);
+			//console.log(param);
 			$.ajax({
 				type: "post",
 				url: "http://192.168.199.127:81/zzht/v1/api/shop/address",

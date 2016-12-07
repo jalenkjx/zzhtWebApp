@@ -423,6 +423,7 @@
             }
         }
         .info{
+            padding-bottom:1rem;
             img{
                 display:block;
                 width:100%;
@@ -431,6 +432,10 @@
         }
         .description{
             padding:.2rem;
+            padding-bottom:1rem;
+            p{
+                height:auto;
+            }
         }
     }// end goodDetail
     //下单

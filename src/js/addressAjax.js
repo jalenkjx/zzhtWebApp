@@ -9,7 +9,7 @@ define(['jquery'],function($){
 			"Authorization":"Bearer "+token
 		},
 		success:function(res){
-			console.log(res)
+			//console.log(res)
 			//拼接收货地址信息
 			for(var i = 0;i<res.datas.length; i++){
 				var html = 
@@ -52,7 +52,6 @@ define(['jquery'],function($){
 								this_.children('p').eq(1).prepend('<span class="default">[默认]</span>');
 								this_.siblings().children('p').children('.default').remove();
 							}
-							
 						}
 					});
 				}

@@ -70,12 +70,13 @@ require([
 				  	//商品信息和购买说明tab切换
 				  	$('.goodTab').children('li').click(function(){
 				  		$(this).addClass('active').siblings().removeClass('active');
+				  		console.log($(this).index());
 				  		if($(this).index()==0){
-				  			$('.description').toggle();
-				  			$('.info').toggle();
+				  			$('.description').hide();
+				  			$('.info').show();
 				  		}else{
-				  			$('.info').toggle();
-				  			$('.description').toggle();
+				  			$('.info').hide();
+				  			$('.description').show();
 				  		}
 				  	})
 					

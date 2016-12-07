@@ -96,6 +96,8 @@ define(['jquery','swiper'],function($){
 			window.localStorage.setItem("imgurl",imgLink+data.goodsImages[2].imgName);
 			//默认存储第一个规格id
 			window.localStorage.setItem("sizeId",data.goodsSizes[0].sizeId);
+			//默认存储第一个规格商品单价
+			window.localStorage.setItem("unitprice",data.goodsSizes[0].price);
 			//规格选择
 			
 			$('input','.c_box').click(function(){
