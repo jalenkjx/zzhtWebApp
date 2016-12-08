@@ -31,8 +31,7 @@ define(['jquery','pingpp'],function($,pingpp){
     	}
     )
     //console.log(beforeOrder);
-
-
+	
     
     
     
@@ -88,7 +87,7 @@ define(['jquery','pingpp'],function($,pingpp){
 						'Content-Type': 'application/json'
 			    	},
 			    	success:function(res){
-			    		console.log(res);
+			    		//console.log(res);
 			    		
 			    		//支付商品的信息
 			    		var payinfos = JSON.stringify(res.datas.payGoodsInfos);
@@ -101,23 +100,47 @@ define(['jquery','pingpp'],function($,pingpp){
 			    		//总价 合计
 			    		var total = res.datas.orderAmount
 			    		$('footer').children('p').children('span').children('i').html(total/100);
-			    		
-		    			//创建订单参数
+			    		//默认渠道为alipay;
+			    		var channel = 'alipay_wap';
+			    		//默认创建订单参数
 		    		    var objOrder = {
 								"order":{
 									"buyerId":userId,
 									"sellerId":sellerId,
 									"amount":total,
 									"currency":"cny",
-									"channel":"alipay",
+									"channel":channel,
 									"clientIp":ip,
 									"addressId":addrId,
 									"payGoodsInfo":payinfos
 								}
 							}
 					    var order = JSON.stringify(objOrder);
-					    
-					    
+						//支付方式选择
+						$('li','.pay_method').on('click',function(e){
+							e.stopPropagation();
+							$(this).addClass('active').siblings('li').removeClass('active');
+							//选择支付渠道改变订单参数;
+							if($('li.active').index() == 1){
+								channel = 'wx_wap';
+							}else{
+								channel ='alipay_wap';
+							}
+							//创建订单的参数改变;
+							objOrder = {
+								"order":{
+									"buyerId":userId,
+									"sellerId":sellerId,
+									"amount":total,
+									"currency":"cny",
+									"channel":channel,
+									"clientIp":ip,
+									"addressId":addrId,
+									"payGoodsInfo":payinfos
+								}
+							}
+							order = JSON.stringify(objOrder);
+						});
 			    		//点击结算
 						$('button','footer').on('click',function(e){
 							$(this).attr('disabled','disabled');
@@ -127,7 +150,7 @@ define(['jquery','pingpp'],function($,pingpp){
 							//创建订单接口
 							$.ajax({
 								type:"POST",
-								url:"http://192.168.199.127:81/zzht/v1/api/shop/order",
+								url:"http://192.168.199.127/zzht/v1/api/shop/order",
 								data:order,
 								crossDomain: true,
 								dataType:'json',

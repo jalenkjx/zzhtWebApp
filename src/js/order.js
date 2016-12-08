@@ -11,11 +11,7 @@ window.onresize = function(){
 }
 
 require(['jquery','orderAjax'],function($){
-	//支付方式选择
-	$('li','.pay_method').click(function(e){
-		e.stopPropagation();
-		$(this).addClass('active').siblings('li').removeClass('active');
-	});
+	
 	//订单页的商品信息
 		//从localstorage里获取图片地址
 	var imgurl = window.localStorage.getItem('imgurl');

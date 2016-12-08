@@ -1,7 +1,7 @@
 define(['jquery'],function($){
 	var userId = window.localStorage.getItem('userId');
 	var token = window.localStorage.getItem('access_token');
-	console.log(userId);
+	//console.log(userId);
 	$.ajax({
 		type:"get",
 		url:"http://192.168.199.127:81/zzht/v1/api/shop/address/user/"+userId,
@@ -46,7 +46,7 @@ define(['jquery'],function($){
 							'Authorization':'Bearer '+token
 						},
 						success:function(res){
-							console.log(res);
+							//console.log(res);
 							if(res.res_code==200){
 								this_.addClass('checked').siblings('li').removeClass('checked');
 								this_.children('p').eq(1).prepend('<span class="default">[默认]</span>');
@@ -74,7 +74,7 @@ define(['jquery'],function($){
 							'Authorization':'Bearer '+token
 						},
 						success:function(res){
-							console.log(res);
+							//console.log(res);
 							if(res.res_code==200){
 								$('li').eq(i).remove();
 							}

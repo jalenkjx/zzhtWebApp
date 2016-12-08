@@ -12,7 +12,7 @@ define(['jquery','swiper'],function($){
 		return null; //返回参数值
 	}
 	
-	console.log(goodid);
+	//console.log(goodid);
 	$.get('http://192.168.199.127:81/zzht/v1/api/shop/goods/'+goodid,
 			//'/api/details',
 		{
@@ -21,9 +21,9 @@ define(['jquery','swiper'],function($){
 		function(res){
 			//console.log(resa);
 			//var res = JSON.parse(resa);
-			console.log(res)
+			//console.log(res)
 			var data = res.datas;
-			console.log(data);
+			//console.log(data);
 			
 			//动态创建轮播图
 			for(var i = 0; i<data.goodsImages.length/3; i++){

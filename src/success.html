@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title></title>
+		<link rel="stylesheet" href="css/success.css" />
+		<script>
+			//rem
+			var winWidth = window.innerWidth;
+			var fontSize = winWidth/750*100;
+			var html = document.documentElement;
+			html.style.fontSize = fontSize + "px";
+			window.onresize = function(){
+				var winWidth = window.innerWidth;
+				var fontSize = winWidth/750*100;
+				var html = document.documentElement;
+				html.style.fontSize = fontSize + "px";
+			}
+		</script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<header>
+				<span class="back"></span>
+				<h1>订单确认</h1>
+			</header>
+
+			<div class="tips">
+				<p class="tips_one">您购买的宝贝已<span>下单成功</span></p>
+				<p class="tips_two">卖家将尽快为您发货，请耐心等待</p>
+			</div>
+			
+			<div class="logo">
+				<img src="http://og20zwqwb.bkt.clouddn.com/logo.png" alt="" />
+				<p>买真货  就上真真海淘</p>
+				<a href="http://dwz.cn/3JaeDJ">下载真真海淘</a>
+				<div>请下载真真海淘app查看订单</div>
+			</div>
+		
+		</div>
+	</body>
+</html>

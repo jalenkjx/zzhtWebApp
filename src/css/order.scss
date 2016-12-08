@@ -14,7 +14,7 @@
             float:left;
             width:.95rem;
             height:.9rem;
-            background:url(../img/arrowLeftRed.png) no-repeat;
+            background:url(http://og20zwqwb.bkt.clouddn.com/arrowLeftRed.png) no-repeat;
             background-size:.95rem .9rem;
         }
         h1{
@@ -39,7 +39,7 @@
             p{
                 padding-left:.76rem;
                 line-height: 1.2rem;
-                background-image: url(../img/add_03.png);
+                background-image: url(http://og20zwqwb.bkt.clouddn.com/add_03.png);
                 background-repeat: no-repeat;
                 background-size: .56rem;
                 background-position-x: 0;
@@ -65,7 +65,7 @@
             position:absolute;
             right:.3rem;
             top:0.8rem;
-            background:url(../img/rightArrow.png) no-repeat;
+            background:url(http://og20zwqwb.bkt.clouddn.com/rightArrow.png) no-repeat;
             background-size:.14rem;
         }
     }//收货人
@@ -164,9 +164,11 @@
             
         }
         .pay_method{
+            background:#fff;
+            padding-bottom:1.2rem;
             li{
                 padding-left:.7rem;
-                background-image:url(../img/pay_unactive.png);
+                background-image:url(http://og20zwqwb.bkt.clouddn.com/pay_unactive.png);
                 background-repeat: no-repeat;
                 background-size: .32rem;
                 background-position-x: .2rem;
@@ -175,7 +177,7 @@
                 border-bottom:1px solid #E6E6E6;
                 p{
                     padding-left: .6rem;
-                    //background-image: url(../img/alipay.png);
+                    //background-image: url(http://og20zwqwb.bkt.clouddn.com/alipay.png);
                     background-repeat: no-repeat;
                     background-size: .4rem;
                     background-position-y: .3rem;
@@ -190,22 +192,23 @@
                 }
             }
             li:nth-child(1) p{
-                background-image: url(../img/alipay.png);
+                background-image: url(http://og20zwqwb.bkt.clouddn.com/alipay.png);
             }
             li:nth-child(2) p{
-                background-image: url(../img/wechatpay.png);
+                background-image: url(http://og20zwqwb.bkt.clouddn.com/wechatpay.png);
             }
             li:nth-child(3) p{
-                background-image: url(../img/userpay.png);
+                background-image: url(http://og20zwqwb.bkt.clouddn.com/userpay.png);
             }
             .active{
-                background-image: url(../img/pay_active.png);
+                background-image: url(http://og20zwqwb.bkt.clouddn.com/pay_active.png);
             }
         }
     }//支付
     footer{
        
-        margin-top:.5rem;
+        position:fixed;
+        bottom:0;
         border:1px solid #e6e6e6;
         width:100%;
         height:1rem;
