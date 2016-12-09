@@ -1,6 +1,6 @@
 require.config({
 	//指定静态文件跟目录
-	baseUrl : "../js/",
+	baseUrl : "./js/",
 	//别名
 	//给一个模块定义别名
 	paths : {

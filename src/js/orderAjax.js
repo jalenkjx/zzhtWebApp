@@ -1,6 +1,7 @@
 //该模块获取收货地址   结算
 
 define(['jquery','pingpp'],function($,pingpp){
+	window.location.reload;
 	//获取用户id
 	var userId = window.localStorage.getItem("userId");
 	//获取token
@@ -39,7 +40,8 @@ define(['jquery','pingpp'],function($,pingpp){
     //获取用户收货地址列表接口
 	$.ajax({
 		type:"get",
-		url:"http://192.168.199.127:81/zzht/v1/api/shop/address/user/"+userId,
+		//url:"http://service.myzhenzhen.com/zzht/v1/api/shop/address/user/"+userId",
+		url:"http://192.168.199.127/zzht/v1/api/shop/address/user/"+userId,
 		async:true,
 		data:{
 			'userId':userId
@@ -80,7 +82,8 @@ define(['jquery','pingpp'],function($,pingpp){
 			    //创建订单前数据准备接口
 				$.ajax({
 			    	type:"post",
-			    	url:"http://192.168.199.127:81/zzht/v1/api/shop/order/preview",
+			    	url:"http://192.168.199.127/zzht/v1/api/shop/order/preview",
+			    	//url:"http://service.myzhenzhen.com/zzht/v1/api/shop/order/preview",
 			    	data:beforeOrder,
 			    	headers:{
 			    		'Authorization':'Bearer '+token,
@@ -144,13 +147,14 @@ define(['jquery','pingpp'],function($,pingpp){
 			    		//点击结算
 						$('button','footer').on('click',function(e){
 							$(this).attr('disabled','disabled');
-							$(this).css('background','#858585')
+							$(this).css('background','#858585');
 							$(this).html('正在结算...');
 							e.stopPropagation();
 							//创建订单接口
 							$.ajax({
 								type:"POST",
 								url:"http://192.168.199.127/zzht/v1/api/shop/order",
+								//url:"http://service.myzhenzhen.com/zzht/v1/api/shop/order",
 								data:order,
 								crossDomain: true,
 								dataType:'json',
@@ -175,7 +179,7 @@ define(['jquery','pingpp'],function($,pingpp){
 									});
 								}
 							});
-						})//结算按钮点击事件	
+						});//结算按钮点击事件	
 			    	}//创建订单前的数据准备接口 success;
 			    });//创建订单前的数据准备接口
 			}//else	

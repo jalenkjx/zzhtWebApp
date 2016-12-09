@@ -13,7 +13,8 @@ define(['jquery','swiper'],function($){
 	}
 	
 	//console.log(goodid);
-	$.get('http://192.168.199.127:81/zzht/v1/api/shop/goods/'+goodid,
+	$.get('http://192.168.199.127/zzht/v1/api/shop/goods/'+goodid,
+	//$.get('http://service.myzhenzhen.com/zzht/v1/api/shop/goods/'+goodid,
 			//'/api/details',
 		{
 			'goodsId':goodid
@@ -132,7 +133,7 @@ define(['jquery','swiper'],function($){
 				//存储购买数量
 				window.localStorage.setItem("buyNum",$('.num').val())
 				
-				window.location.href = "Login.html";
+				window.location.href = "./Login.html";
 			})
 		})
 })

@@ -31,7 +31,6 @@ require([
 				//console.log(goods_id);
 				$('.back').on('click',function(e){
 					e.stopPropagation();
-					window.location.href = "/details.html?goods_id="+goods_id
-				})
-				
+					window.location.href = "./details.html?goods_id="+goods_id
+				});
 			});

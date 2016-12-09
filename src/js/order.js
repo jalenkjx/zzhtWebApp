@@ -30,10 +30,10 @@ require(['jquery','orderAjax'],function($){
 	
 	//点击收货人跳转用户地址列表页；
 	$('.consignee').eq(0).click(function(){
-		window.location.href = "/address.html";
+		window.location.href = "./address.html";
 	})
 	$('.back').on('click',function(e){
 		e.stopPropagation();
-		window.location.href="/Login.html";
+		window.location.href="./Login.html";
 	})
 })

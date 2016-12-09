@@ -27,7 +27,8 @@ define(['jquery'],function($){
 					}
 					//代理跨域
 					$.ajax({
-						url:'http://192.168.199.127:81/zzht/oauth/token',
+						url:'http://192.168.199.127/zzht/oauth/token',
+						//url:'http://service.myzhenzhen.com/zzht/oauth/token',
 						type:'post',
 						data:{
 							"grant_type":"password",
@@ -62,7 +63,9 @@ define(['jquery'],function($){
 								type: "post", 
 								dataType: 'json',
 								//crossDomain:true,
-								url: "http://192.168.199.127:81/zzht/v1/api/users/getUserByLoginName", 
+								//url: "http://service.myzhenzhen.com/zzht/v1/api/users/getUserByLoginName", 
+								url: "http://192.168.199.127/zzht/v1/api/users/getUserByLoginName", 
+								
 								data:{
 									  'loginName':phoneNum,
 									  'thirdType':' '
@@ -78,7 +81,7 @@ define(['jquery'],function($){
 							      console.log(buyerInfo);
 							      //存储买家id
 							      window.localStorage.setItem('userId',buyerInfo.userId);
-							      window.location.href = '/order.html';
+							      window.location.href = './order.html';
 							    }
 							});
 						}

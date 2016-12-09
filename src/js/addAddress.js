@@ -38,7 +38,7 @@ require(['jquery','LAreaData1','LArea','addAjax'],function($,LAreaData1,LArea){
 	//返回按钮的页面跳转
 	$('.back').on('click',function(e){
 		e.stopPropagation();
-		window.location.href = "/address.html";
+		window.location.href = "./address.html";
 	})
 
 })

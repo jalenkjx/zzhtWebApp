@@ -30,7 +30,8 @@ define(['jquery'], function() {
 			//console.log(param);
 			$.ajax({
 				type: "post",
-				url: "http://192.168.199.127:81/zzht/v1/api/shop/address",
+				//url: "http://service.myzhenzhen.com/zzht/v1/api/shop/address",
+				url: "http://192.168.199.127/zzht/v1/api/shop/address",
 				async: true,
 				data:param,
 				headers: {
@@ -40,7 +41,7 @@ define(['jquery'], function() {
 				dataType:'json',
 				success: function(res){	
 					console.log(res);
-					window.location.href = "/address.html"
+					window.location.href = "./address.html"
 				}
 			});
 		}

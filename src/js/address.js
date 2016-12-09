@@ -15,7 +15,7 @@ require(['jquery','addressAjax'],function($){
 	
 	$('.back').on('click',function(e){
 		e.stopPropagation();
-		window.location.href = "/order.html"
+		window.location.href = "./order.html"
 	})
 
 	
