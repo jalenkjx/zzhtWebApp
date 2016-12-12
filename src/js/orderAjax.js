@@ -153,7 +153,7 @@ define(['jquery','pingpp'],function($,pingpp){
 							//创建订单接口
 							$.ajax({
 								type:"POST",
-								url:"http://192.168.199.127/zzht/v1/api/shop/order",
+								url:"http://192.168.199.113/zzht/v1/api/shop/order",
 								//url:"http://service.myzhenzhen.com/zzht/v1/api/shop/order",
 								data:order,
 								crossDomain: true,
