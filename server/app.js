@@ -40,6 +40,6 @@ app.use(express.static("./dest"));
 var server  = require('http').createServer(app);
 //监听端口和 ip 地址
 //0.0.0.0 本机网卡
-server.listen(80, "0.0.0.0", function() {
-	console.log('http://127.0.0.1:80');
+server.listen(8000, "0.0.0.0", function() {
+	console.log('http://127.0.0.1:8000');
 });
