@@ -1,5 +1,7 @@
 define(['jquery'], function() {
 	//
+	var api = 'http://192.168.199.127/zzht/'
+	//var api = 'http://service.myzhenzhen.com/zzht/'
 	var userId = window.localStorage.getItem('userId');
 	var token = window.localStorage.getItem('access_token');
 	$('#add').click(function(e) {
@@ -31,7 +33,7 @@ define(['jquery'], function() {
 			$.ajax({
 				type: "post",
 				//url: "http://service.myzhenzhen.com/zzht/v1/api/shop/address",
-				url: "http://192.168.199.127/zzht/v1/api/shop/address",
+				url: api+"v1/api/shop/address",
 				async: true,
 				data:param,
 				headers: {

@@ -1,6 +1,8 @@
 //该模块获取收货地址   结算
 
 define(['jquery','pingpp'],function($,pingpp){
+	var api = 'http://192.168.199.127/zzht/'
+	//var api = 'http://service.myzhenzhen.com/zzht/'
 	window.location.reload;
 	//获取用户id
 	var userId = window.localStorage.getItem("userId");
@@ -41,7 +43,7 @@ define(['jquery','pingpp'],function($,pingpp){
 	$.ajax({
 		type:"get",
 		//url:"http://service.myzhenzhen.com/zzht/v1/api/shop/address/user/"+userId",
-		url:"http://192.168.199.127/zzht/v1/api/shop/address/user/"+userId,
+		url:api+"v1/api/shop/address/user/"+userId,
 		async:true,
 		data:{
 			'userId':userId
@@ -82,7 +84,7 @@ define(['jquery','pingpp'],function($,pingpp){
 			    //创建订单前数据准备接口
 				$.ajax({
 			    	type:"post",
-			    	url:"http://192.168.199.127/zzht/v1/api/shop/order/preview",
+			    	url:api+"v1/api/shop/order/preview",
 			    	//url:"http://service.myzhenzhen.com/zzht/v1/api/shop/order/preview",
 			    	data:beforeOrder,
 			    	headers:{

@@ -1,5 +1,7 @@
 define(['jquery','swiper'],function($){
 	
+	var api = 'http://192.168.199.127/zzht/'
+	//var api = 'http://service.myzhenzhen.com/zzht/'
 	var imgLink = 'http://o6uda1nl0.bkt.clouddn.com/';//内网
 	//var imgLink = 'http://7xrr05.com1.z0.glb.clouddn.com/';//外网
 	var goodid = getUrlParam('goods_id');
@@ -13,7 +15,7 @@ define(['jquery','swiper'],function($){
 	}
 	
 	//console.log(goodid);
-	$.get('http://192.168.199.127/zzht/v1/api/shop/goods/'+goodid,
+	$.get(api+'v1/api/shop/goods/'+goodid,
 	//$.get('http://service.myzhenzhen.com/zzht/v1/api/shop/goods/'+goodid,
 			//'/api/details',
 		{
@@ -133,7 +135,7 @@ define(['jquery','swiper'],function($){
 				//存储购买数量
 				window.localStorage.setItem("buyNum",$('.num').val())
 				
-				window.location.href = "./Login.html";
+				window.location.href = "./phoneCheck.html";
 			})
 		})
 })

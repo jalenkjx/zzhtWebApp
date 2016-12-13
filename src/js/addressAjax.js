@@ -1,11 +1,14 @@
 define(['jquery'],function($){
+	var api = 'http://192.168.199.127/zzht/'
+	//var api = 'http://service.myzhenzhen.com/zzht/'
+	
 	var userId = window.localStorage.getItem('userId');
 	var token = window.localStorage.getItem('access_token');
 	//console.log(userId);
 	$.ajax({
 		type:"get",
 		//url:"http://service.myzhenzhen.com/zzht/v1/api/shop/address/user/"+userId,
-		url:"http://192.168.199.127/zzht/v1/api/shop/address/user/"+userId,
+		url:api+"v1/api/shop/address/user/"+userId,
 		
 		headers:{
 			"Authorization":"Bearer "+token
@@ -40,7 +43,7 @@ define(['jquery'],function($){
 					alert('此地址已经是默认地址');
 				}else{
 					$.ajax({
-						url:'http://192.168.199.127/zzht/v1/api/shop/address/default/'+addressId+'?userId='+userId,
+						url:api+'v1/api/shop/address/default/'+addressId+'?userId='+userId,
 						//url:'http://service.myzhenzhen.com/zzht/v1/api/shop/address/default/'+addressId+'?userId='+userId,
 						type : 'PUT',
 						data:{'userId':userId,'addrId':userId},
@@ -70,7 +73,7 @@ define(['jquery'],function($){
 					//调删除接口
 					$.ajax({
 						//url:'http://service.myzhenzhen.com/zzht/v1/api/shop/address/'+addressId+'?userId='+userId,
-						url:'http://192.168.199.127/zzht/v1/api/shop/address/'+addressId+'?userId='+userId,
+						url:api+'v1/api/shop/address/'+addressId+'?userId='+userId,
 						type:'DELETE',	
 						//data:{'userId':userId,'addrId':addressId},
 						cache:false,
