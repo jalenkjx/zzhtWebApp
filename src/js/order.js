@@ -27,13 +27,13 @@ require(['jquery','orderAjax'],function($){
 	$('.price').children('span').html(unitprice);
 	
 	
-	
+	var goods_id = window.localStorage.getItem('goods_id');
 	//点击收货人跳转用户地址列表页；
 	$('.consignee').eq(0).click(function(){
 		window.location.href = "./address.html";
 	})
 	$('.back').on('click',function(e){
 		e.stopPropagation();
-		window.location.href="./Login.html";
+		window.location.href="./details.html?goods_id="+goods_id;
 	})
 })

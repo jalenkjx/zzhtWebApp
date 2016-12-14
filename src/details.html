@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-		<title></title>
+		<title>商品详情</title>
 		<script src="./js/require.js"></script>
 		<script src="./js/config.js"></script>
 		<link rel="stylesheet" href="./css/details.css" />
@@ -28,7 +28,7 @@
 				<div class="goodPrice">
 					￥<b class="goodPriceInt"></b><i class="goodPricePoint"></i>
 				</div>
-				
+
 				<div class="goodName"></div>
 				<div class="signature"></div>
 				<div class="goodInfo">
@@ -66,7 +66,7 @@
 					请选择规格
 					<div class="mask"></div>
 					<!--弹窗-->
-					<div class="popUp" style="display:none;">
+					<div class="popUp" style="display:block;">
 						<div class="title">
 							<div class="imgbox">
 								<img src="" alt="" />
@@ -148,10 +148,11 @@
 					</div>
 						
 				</div>
-				<div class="order">
-					<a href="javascript:;">下单</a>
-				</div>
+				
 			</section>
+			<div class="order">
+				<a id="order" href="javascript:;">下单</a>
+			</div>
 		</div>
 	</body>
 </html>

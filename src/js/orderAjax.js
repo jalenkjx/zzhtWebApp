@@ -1,7 +1,8 @@
 //该模块获取收货地址   结算
 
 define(['jquery','pingpp'],function($,pingpp){
-	var api = 'http://192.168.199.127/zzht/'
+	//var api = 'http://192.168.199.127/zzht/'
+	var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
 	//var api = 'http://service.myzhenzhen.com/zzht/'
 	window.location.reload;
 	//获取用户id
@@ -155,7 +156,8 @@ define(['jquery','pingpp'],function($,pingpp){
 							//创建订单接口
 							$.ajax({
 								type:"POST",
-								url:"http://192.168.199.113/zzht/v1/api/shop/order",
+								url:api+"v1/api/shop/order",
+								//url:'http://192.168.199.113/zzht/v1/api/shop/order',
 								//url:"http://service.myzhenzhen.com/zzht/v1/api/shop/order",
 								data:order,
 								crossDomain: true,

@@ -15,9 +15,11 @@ require([
 			'swiper',
 			'detailAjax'
 			],
-			function($,Swiper){
+			function($,Swiper,detailAjax){
 				
+				$('.popUp').css('display','none');
 				$(function(){
+					var maskHeight = $(window).height();
 					//增加购买数量
 					$('.plus').eq(0).click(function(){
 						var num = $('.num').eq(0).val();
@@ -44,27 +46,48 @@ require([
 						}
 					})
 					//点击按钮，规格弹窗消失
-					$('.close').click(function(e){
-						e.stopPropagation();
-						$('.popUp').animate().fadeOut();
-						$('.mask').css('height','0');
+					$('.close').on('click',function(e){
+						e = e || window.event;  
+					    if(e.stopPropagation) { 
+					        e.stopPropagation();  
+					    } else {  
+					        e.cancelBubble = true;  
+					    } 
+						document.getElementsByClassName('popUp')[0].style.display='none';
+						document.getElementsByClassName('mask')[0].style.height='0';
+//						$('.popUp').css('display','none');
+//						$('.mask').css('height','0');
 						 
 					})
 					//点击    请选择规格，下单，显示规格弹窗；
-					$('.standard').click(function(e){
-						e.stopPropagation();
+					$('.standard').on('click',function(e){
+						e = e || window.event;  
+					    if(e.stopPropagation) { 
+					        e.stopPropagation();  
+					    } else {  
+					        e.cancelBubble = true;  
+					    } 
+						//e.stopPropagation();
 						fadeIn();	
 					})
-					$('a','.order').click(function(e){
-						e.stopPropagation();
+					$('#order').on('click',function(e){
+						e = e || window.event;  
+					    if(e.stopPropagation) { 
+					        e.stopPropagation();  
+					    } else {  
+					        e.cancelBubble = true;  
+					    } 
 						fadeIn();
 					})
 					  //遮罩层,弹窗出现
-					var maskHeight = $(window).height();
+					
 				  	function fadeIn(){
-				  		$('.popUp').animate().fadeIn();
-						
-						$('.mask').css('height',maskHeight);
+				  		//alert(2);
+				  		 
+				  		document.getElementsByClassName('popUp')[0].style.display='block';
+				  		//$('.popUp').css('display','block');
+				  		document.getElementsByClassName('mask')[0].style.height=maskHeight+'px';
+						//$('.mask').css('height',maskHeight);
 				  	}
 				  	
 				  	//商品信息和购买说明tab切换
@@ -72,11 +95,11 @@ require([
 				  		$(this).addClass('active').siblings().removeClass('active');
 				  		console.log($(this).index());
 				  		if($(this).index()==0){
-				  			$('.description').hide();
-				  			$('.info').show();
+				  			$('.description').css('display','none');
+				  			$('.info').css('display','block');
 				  		}else{
-				  			$('.info').hide();
-				  			$('.description').show();
+				  			$('.info').css('display','none');
+				  			$('.description').css('display','block');
 				  		}
 				  	})
 					

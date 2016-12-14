@@ -1,6 +1,7 @@
 define(['jquery','swiper'],function($){
 	
-	var api = 'http://192.168.199.127/zzht/'
+	//var api = 'http://192.168.199.127/zzht/'
+	var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
 	//var api = 'http://service.myzhenzhen.com/zzht/'
 	var imgLink = 'http://o6uda1nl0.bkt.clouddn.com/';//内网
 	//var imgLink = 'http://7xrr05.com1.z0.glb.clouddn.com/';//外网
@@ -134,8 +135,38 @@ define(['jquery','swiper'],function($){
 				window.localStorage.setItem("goods_id",goodid);
 				//存储购买数量
 				window.localStorage.setItem("buyNum",$('.num').val())
+				var token = window.localStorage.getItem('access_token');
+				var phone = window.localStorage.getItem('phone');
+				if(token&&phone){
+					$.ajax({ 
+						type: "post",
+						//crossDomain:true,
+						//url: "http://service.myzhenzhen.com/zzht/v1/api/users/getUserByLoginName", 
+						url: api+"v1/api/users/getUserByLoginName", 
+						data:{
+							  'loginName':phone,
+							  'thirdType':' '
+							},
+						headers : {
+							'Authorization': 'Bearer '+token,
+							'Content-Type': 'application/x-www-form-urlencoded'
+						},
+					    complete: function (res) {
+							console.log(res.status);
+								if(res.status==200){
+								      	//获取用户的登录信息
+									var buyerInfo = JSON.parse(res.responseJSON.user);
+									console.log(buyerInfo);
+									//存储买家id
+									window.localStorage.setItem('userId',buyerInfo.userId);
+									window.location.href = './order.html';
+								}
+					    }//complete
+					});
+				}else{
+					window.location.href = "./phoneCheck.html";
+				}
 				
-				window.location.href = "./phoneCheck.html";
 			})
 		})
 })
