@@ -17,6 +17,9 @@ require([
 			],
 			function($,Swiper,detailAjax){
 				
+
+				$('#mask').css('width',$(document).width());
+				$('#mask').css('height',$(document).height());
 				$('.popUp').css('display','none');
 				$(function(){
 					var maskHeight = $(window).height();
