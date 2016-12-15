@@ -21,18 +21,13 @@ define(['jquery'],function($){
 		//监听
 		monitor($('#getCheckCode'));
 		$('#getCheckCode').click(function(){
-			if($('#phoneNum').val().length<11){
-				alert('请输入正确手机号');
-			}else{
-				window.localStorage.setItem('phone',$('#phoneNum').val())
-				countDown($('#getCheckCode'), getCode);
-				//console.log($(this));
-				$(this).attr('disabled','disabled');
-				setTimeout(function(){
-					$('#getCheckCode').removeAttr('disabled');
-				},60000)
-			}
-			
+			window.localStorage.setItem('phone',$('#phoneNum').val())
+			countDown($('#getCheckCode'), getCode);
+			//console.log($(this));
+			$(this).attr('disabled','disabled');
+			setTimeout(function(){
+				$('#getCheckCode').removeAttr('disabled');
+			},60000)
 		});
 		function getCode(){
 			$.ajax({
@@ -73,9 +68,17 @@ define(['jquery'],function($){
 			var pass = $('#checktext').val();
 			var username = $('#phoneNum').val();
 			if(pass==''|username==''){
-				alert('请填写正确的手机号和验证码');
+				$('.alert').eq(0).children('p').html('请输入正确的手机号和验证码');
+					$('.alert').css('display','block');
+					$('.alert_sure').on('click',function(){
+						$('.alert').css('display','none');
+					})
 			}else if(!$('#agree').is(':checked')){
-				alert('请认真阅读《真真海淘用户服务协议》')
+				$('.alert').eq(0).children('p').html('请同意《真真海淘用户服务协议》');
+					$('.alert').css('display','block');
+					$('.alert_sure').on('click',function(){
+						$('.alert').css('display','none');
+					})
 			}else{
 				$('.sure').html('正在登录');
 				$.ajax({
@@ -98,7 +101,11 @@ define(['jquery'],function($){
 						console.log(res.status);
 						var status = res.status;
 						if(status == 401){
-							alert('验证码错误，请重新输入');
+							$('.alert').eq(0).children('p').html('验证码错误，请重新输入');
+							$('.alert').css('display','block');
+							$('.alert_sure').on('click',function(){
+								$('.alert').css('display','none');
+							})
 						}
 					},
 					success:function(res){

@@ -25,7 +25,11 @@ require([
 						var num = $('.num').eq(0).val();
 						var inventory = parseInt($('i','.stock').html());
 						if(num >= inventory){
-							alert('已达到库存上限');
+							$('.alert').eq(0).children('p').html('已达到库存上限')
+							$('.alert').css('display','block');
+							$('.alert_sure').on('click',function(){
+								$('.alert').css('display','none');
+							})
 							num = inventory;
 							$('.num').eq(0).val(num);
 						}else{
@@ -37,7 +41,12 @@ require([
 					$('.minus').eq(0).click(function(){
 						var num = $('.num').eq(0).val();
 						if(num<=1){
-							alert('最少购买一件');
+//							alert('最少购买一件');
+							$('.alert').eq(0).children('p').html('最少购买一件')
+							$('.alert').css('display','block');
+							$('.alert_sure').on('click',function(){
+								$('.alert').css('display','none');
+							})
 							num = 1;
 							$('.num').eq(0).val(num);
 						}else{
@@ -82,7 +91,6 @@ require([
 					  //遮罩层,弹窗出现
 					
 				  	function fadeIn(){
-				  		//alert(2);
 				  		 
 				  		document.getElementsByClassName('popUp')[0].style.display='block';
 				  		//$('.popUp').css('display','block');

@@ -149,7 +149,11 @@ define(['jquery','pingpp'],function($,pingpp){
     		//点击结算
 			$('button','footer').on('click',function(e){
 				if($('.add_address').css('display')=='block'){
-					alert('请添加收货人信息');
+					$('.alert').eq(0).children('p').html('请添加收货人信息');
+					$('.alert').css('display','block');
+					$('.alert_sure').on('click',function(){
+						$('.alert').css('display','none');
+					})
 				}else{
 					$(this).attr('disabled','disabled');
 					$(this).css('background','#858585');

@@ -13,7 +13,11 @@ define(['jquery'], function() {
 			de = 1;
 		}
 		if($('#name').val() == '' | $('#idCard').val() == '' | $('#phoneNum').val() == '' | $('#postcode').val() == '' | $('#choose').val() == '' | $('#detailarea').val() == '') {
-			alert('请输入完整信息');
+			$('.alert').eq(0).children('p').html('请填写完整信息')
+			$('.alert').css('display','block');
+			$('.alert_sure').on('click',function(){
+				$('.alert').css('display','none');
+			})
 		} else {
 			$(this).attr('disabled','disabled');
 			$(this).css('background','#858585')

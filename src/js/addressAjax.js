@@ -41,7 +41,11 @@ define(['jquery'],function($){
 				var addressId = $(this).attr('data-id');
 				var this_=$(this);
 				if($(this).children('p').children('.default').length){
-					alert('此地址已经是默认地址');
+					$('.alert').eq(0).children('p').html('此地址已经是默认地址')
+					$('.alert').css('display','block');
+					$('.alert_sure').on('click',function(){
+						$('.alert').css('display','none');
+					})
 				}else{
 					$.ajax({
 						url:api+'v1/api/shop/address/default/'+addressId+'?userId='+userId,
@@ -69,8 +73,15 @@ define(['jquery'],function($){
 				e.stopPropagation();
 				var addressId = $(this).parents('li').attr('data-id');
 				var i = $(this).parents('li').index();
-				if(confirm("确定要删除数据吗")){
+				$('.confirm').eq(0).css('display','block');
+				$('.confirm').children('p').eq('0').html('确定要删除该收货地址么？');
+				$('.confirm_cancel').on('click',function(){
+					$('.confirm').eq(0).css('display','none');
+				});
+				$('.confirm_sure').on('click',function(){
 					
+				
+					$('.confirm').eq(0).css('display','none');
 					//调删除接口
 					$.ajax({
 						//url:'http://service.myzhenzhen.com/zzht/v1/api/shop/address/'+addressId+'?userId='+userId,
@@ -89,7 +100,7 @@ define(['jquery'],function($){
 							
 						}
 					})//delete 接口
-			   }//confirm	
+			   })//confirm	
 			});//点击删除按钮事件；
 		}//请求收货地址列表接口success
 	});//

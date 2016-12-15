@@ -160,6 +160,8 @@ define(['jquery','swiper'],function($){
 									//存储买家id
 									window.localStorage.setItem('userId',buyerInfo.userId);
 									window.location.href = './order.html';
+								}else{
+									window.location.href = "./phoneCheck.html";
 								}
 					    }//complete
 					});
