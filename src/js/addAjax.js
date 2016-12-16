@@ -1,8 +1,8 @@
-define(['jquery'], function() {
-	//
-	var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
-	//var api = 'http://192.168.199.127/zzht/'
-	//var api = 'http://service.myzhenzhen.com/zzht/'
+define(['jquery','param'], function() {
+//	//
+//	//var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
+//	//var api = 'http://192.168.199.127/zzht/'
+//	var api = 'http://service.myzhenzhen.com/zzht/'
 	var userId = window.localStorage.getItem('userId');
 	var token = window.localStorage.getItem('access_token');
 	$('#add').click(function(e) {

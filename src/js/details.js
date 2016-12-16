@@ -18,20 +18,25 @@ require([
 			function($,Swiper,detailAjax){
 				
 
-				$('#mask').css('width',$(document).width());
-				$('#mask').css('height',$(document).height());
+//				$('#mask').css('width',$(document).width());
+//				$('#mask').css('height',$(document).height());
 				$('.popUp').css('display','none');
 				$(function(){
 					var maskHeight = $(window).height();
 					//增加购买数量
+					var flag = 0;
 					$('.plus').eq(0).click(function(){
 						var num = $('.num').eq(0).val();
 						var inventory = parseInt($('i','.stock').html());
 						if(num >= inventory){
 							$('.alert').eq(0).children('p').html('已达到库存上限')
+//							$('#mask').css('display','block');
+//							flag = 1;
 							$('.alert').css('display','block');
 							$('.alert_sure').on('click',function(){
 								$('.alert').css('display','none');
+//								$('#mask').css('display','none');
+//								flag = 0;
 							})
 							num = inventory;
 							$('.num').eq(0).val(num);
@@ -40,6 +45,8 @@ require([
 							$('.num').eq(0).val(num);
 						}
 					})
+					
+					
 					//减少购买数量
 					$('.minus').eq(0).click(function(){
 						var num = $('.num').eq(0).val();
@@ -47,8 +54,12 @@ require([
 //							alert('最少购买一件');
 							$('.alert').eq(0).children('p').html('最少购买一件')
 							$('.alert').css('display','block');
+//							$('#mask').css('display','block');
+//							flag = 1;
 							$('.alert_sure').on('click',function(){
 								$('.alert').css('display','none');
+//								$('#mask').css('display','none');
+//								flag = 0;
 							})
 							num = 1;
 							$('.num').eq(0).val(num);
@@ -57,6 +68,7 @@ require([
 							$('.num').eq(0).val(num);
 						}
 					})
+					
 					//点击按钮，规格弹窗消失
 					$('.close').on('click',function(e){
 						e = e || window.event;  
@@ -67,6 +79,7 @@ require([
 					    } 
 						document.getElementsByClassName('popUp')[0].style.display='none';
 						document.getElementsByClassName('mask')[0].style.height='0';
+						flag = 0;
 //						$('.popUp').css('display','none');
 //						$('.mask').css('height','0');
 						 
@@ -99,8 +112,15 @@ require([
 				  		//$('.popUp').css('display','block');
 				  		document.getElementsByClassName('mask')[0].style.height=maskHeight+'px';
 						//$('.mask').css('height',maskHeight);
+						flag = 1;
 				  	}
 				  	
+				  	
+				  	document.addEventListener('touchmove', function (event) {
+						if(flag == 1){
+							event.preventDefault();
+						}
+					})
 				  	//商品信息和购买说明tab切换
 				  	$('.goodTab').children('li').click(function(){
 				  		$(this).addClass('active').siblings().removeClass('active');

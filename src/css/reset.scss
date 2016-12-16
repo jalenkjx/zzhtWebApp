@@ -84,7 +84,7 @@ input{
         left:50%;
         transform: translate(-50%,-50%);
         border-radius: .2rem;
-        background:#f0f0f0;
+        border:1px solid #dadade;
         p{
             height:1.6rem;
             line-height:1.6rem;
@@ -96,11 +96,12 @@ input{
         }
         button{
             width:100%;
-            background:#f0f0f0;
+            background:#fff;
             height:.9rem;
             line-height:.9rem;
             text-align: center;
             border-radius: 0 0 .2rem .2rem;
+            color:#E31436;
         }
         
     }
@@ -114,7 +115,7 @@ input{
         left:50%;
         transform: translate(-50%,-50%);
         border-radius: .2rem;
-        background:#f0f0f0;
+        border:1px solid #dadade;
         p{
             height:1.6rem;
             line-height:1.6rem;
@@ -127,12 +128,28 @@ input{
         button{
             float:left;
             width:50%;
-            background:#f0f0f0;
+            background:#fff;
             height:.9rem;
             line-height:.9rem;
             text-align: center;
-            border-radius: 0 0 .2rem .2rem;
+            border-radius: 0 0 0 .2rem;
+            color:#E31436;
+        }
+        .confirm_sure{
+            border-right:1px solid #dadada;
+        }
+        .confirm_cancel{
+            border-radius: 0 0 .2rem 0;
         }
         
     }
-    
+   #mask{
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background:#000;
+    opacity:0.3;
+    z-index:888;
+} 

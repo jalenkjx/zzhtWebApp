@@ -4,6 +4,12 @@
 .wrapper{
     width:100%;
     overflow-x:hidden;
+    header{
+        width:100%;
+        img{
+            width:100%;
+        }
+    }
     section{
         width:100%;
         box-sizing: border-box;

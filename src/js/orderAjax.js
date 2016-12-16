@@ -1,8 +1,8 @@
 //该模块获取收货地址   结算
 
-define(['jquery','pingpp'],function($,pingpp){
+define(['jquery','pingpp','param'],function($,pingpp){
 	//var api = 'http://192.168.199.127/zzht/'
-	var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
+	//var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
 	//var api = 'http://service.myzhenzhen.com/zzht/'
 	window.location.reload;
 	//获取用户id

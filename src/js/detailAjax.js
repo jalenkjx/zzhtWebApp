@@ -1,9 +1,9 @@
-define(['jquery','swiper'],function($){
+define(['jquery','swiper','param'],function($){
 	
 	//var api = 'http://192.168.199.127/zzht/'
-	var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
+	//var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
 	//var api = 'http://service.myzhenzhen.com/zzht/'
-	var imgLink = 'http://o6uda1nl0.bkt.clouddn.com/';//内网
+	//var imgLink = 'http://o6uda1nl0.bkt.clouddn.com/';//内网
 	//var imgLink = 'http://7xrr05.com1.z0.glb.clouddn.com/';//外网
 	var goodid = getUrlParam('goods_id');
 	//获取url中的参数
@@ -71,7 +71,17 @@ define(['jquery','swiper'],function($){
 			$('span','.arriveTime').html(data.arrivalDays);
 			//卖家头像
 			var url = data.userDTO.icon;
+			//console.log(typeof(url));
+			if(url.indexOf('http')>-1){
+				url = url;
+				//console.log('1'+"  ---  "+url);
+			}else{
+				url = imgLink+url;
+				//console.log('2'+"  ---  "+url);
+			}
+			//console.log(url);
 			$('.userIcon').css('background-image','url('+url+')');
+			
 			//卖家昵称
 			$('.userName').html(data.userDTO.nickname);
 			//卖家地址
@@ -95,7 +105,7 @@ define(['jquery','swiper'],function($){
 				$('input','.c_box').eq(i).attr('value',data.goodsSizes[i].name);
 			}
 			//规格图片
-			$('.title').children('.imgbox').children().attr('src','http://o6uda1nl0.bkt.clouddn.com/'+data.goodsImages[2].imgName);
+			$('.title').children('.imgbox').children().attr('src',imgLink+data.goodsImages[2].imgName);
 			//存储图片url
 			window.localStorage.setItem("imgurl",imgLink+data.goodsImages[2].imgName);
 			//默认存储第一个规格id
