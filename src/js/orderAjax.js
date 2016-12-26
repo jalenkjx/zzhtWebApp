@@ -9,8 +9,6 @@ define(['jquery','pingpp','param'],function($,pingpp){
 	var userId = window.localStorage.getItem("userId");
 	//获取token
 	var token = window.localStorage.getItem('access_token');
-	//获取收货地址id
-	var addrId = window.localStorage.getItem('addrId');
 	
 	//卖家id
 	var sellerId = window.localStorage.getItem('sellerId');
@@ -36,7 +34,7 @@ define(['jquery','pingpp','param'],function($,pingpp){
     )
     //console.log(beforeOrder);
 	
-    
+    var addrId;
     
     
     
@@ -76,6 +74,10 @@ define(['jquery','pingpp','param'],function($,pingpp){
 						$('.phoneNum').html(tel);
 						//收货地址
 						$('.info_address').children('span').html(data.addressName);
+						
+						//获取收货地址id
+						addrId = window.localStorage.getItem('addrId');
+						console.log(addrId);
 					}
 				}//遍历datas；
 			}//else	
@@ -121,31 +123,32 @@ define(['jquery','pingpp','param'],function($,pingpp){
 					}
 				}
 		    var order = JSON.stringify(objOrder);
+		    console.log(order);
 			//支付方式选择
-			$('li','.pay_method').on('click',function(e){
-				e.stopPropagation();
-				$(this).addClass('active').siblings('li').removeClass('active');
-				//选择支付渠道改变订单参数;
-				if($('li.active').index() == 1){
-					channel = 'wx_wap';
-				}else{
-					channel ='alipay_wap';
-				}
-				//创建订单的参数改变;
-				objOrder = {
-					"order":{
-						"buyerId":userId,
-						"sellerId":sellerId,
-						"amount":total,
-						"currency":"cny",
-						"channel":channel,
-						"clientIp":ip,
-						"addressId":addrId,
-						"payGoodsInfo":payinfos
-					}
-				}
-				order = JSON.stringify(objOrder);
-			});
+//			$('li','.pay_method').on('click',function(e){
+//				e.stopPropagation();
+//				$(this).addClass('active').siblings('li').removeClass('active');
+//				//选择支付渠道改变订单参数;
+//				if($('li.active').index() == 1){
+//					channel = 'wx_wap';
+//				}else{
+//					channel ='alipay_wap';
+//				}
+//				//创建订单的参数改变;
+//				objOrder = {
+//					"order":{
+//						"buyerId":userId,
+//						"sellerId":sellerId,
+//						"amount":total,
+//						"currency":"cny",
+//						"channel":channel,
+//						"clientIp":ip,
+//						"addressId":addrId,
+//						"payGoodsInfo":payinfos
+//					}
+//				}
+//				order = JSON.stringify(objOrder);
+//			});
     		//点击结算
 			$('button','footer').on('click',function(e){
 				if($('.add_address').css('display')=='block'){
