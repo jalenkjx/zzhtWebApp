@@ -9,9 +9,9 @@ define(['jquery'],function(){
 		type:"get",
 		url:api+"v1/api/domain/get_domains",
 		success:function(res){
-			//console.log(res);
+			console.log(res);
 			//console.log(res.datas[1].urls[0]);
 			imgLink = res.datas[1].urls[0];
 		}
 	});
-})
+});

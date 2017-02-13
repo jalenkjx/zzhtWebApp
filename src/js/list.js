@@ -16,8 +16,12 @@ require(['jquery','param'],function($){
 	//var api = 'http://service.myzhenzhen.com/zzht/';
 	//var imgLink = 'http://o6uda1nl0.bkt.clouddn.com/';//内网
 	//var imgLink = 'http://7xrr05.com1.z0.glb.clouddn.com/';//外网
-	var liveId = getUrlParam('liveId');
-	var userId = getUrlParam('userId');
+//	var liveId = getUrlParam('liveId');
+	var liveId = window.localStorage.getItem('liveId');
+//	var userId = getUrlParam('userId');
+	var userId = window.localStorage.getItem('userId');
+	var coverImg = window.localStorage.getItem('coverImg');
+	$('img','header').attr('src',coverImg);
 	$.ajax({
 		type:"get",
 		url:api+"v1/api/live/"+liveId+"?userId="+userId,

@@ -6,20 +6,20 @@
     height:auto;
     background:#f0f0f0;
     overflow-x: hidden;
-//  .headfixed{
-//      position:fixed;
-//      width:7.5rem;
-//      z-index: 100;
-//      a{
-//          width:100%;
-//          display:block;
-//          height:auto;
-//          img{
-//              width:100%;
-//              height:auto;
-//          }
-//      }
-//  }//end headerfixed
+    .headfixed{
+        position:fixed;
+        width:7.5rem;
+        z-index: 100;
+        a{
+            width:100%;
+            display:block;
+            height:auto;
+            img{
+                width:100%;
+                height:auto;
+            }
+        }
+    }//end headerfixed
     section{
         display:block;
         margin-bottom:1rem;
