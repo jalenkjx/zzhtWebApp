@@ -1,51 +1,125 @@
 define(['jquery','swiper','param'],function($){
-	
-	//var api = 'http://192.168.199.127/zzht/'
-	//var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
-	//var api = 'http://service.myzhenzhen.com/zzht/'
-	//var imgLink = 'http://o6uda1nl0.bkt.clouddn.com/';//内网
-	//var imgLink = 'http://7xrr05.com1.z0.glb.clouddn.com/';//外网
-	var goodid = getUrlParam('goods_id');
-	//获取url中的参数
-	function getUrlParam(name) {
-		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-		var r = window.location.search.substr(1).match(reg); //匹配目标参数
-		if (r != null)
-		return unescape(r[2]);
-		return null; //返回参数值
-	}
-	
-	//console.log(goodid);
-	$.get(api+'v1/api/shop/goods/'+goodid,
-	//$.get('http://service.myzhenzhen.com/zzht/v1/api/shop/goods/'+goodid,
-			//'/api/details',
-		{
-			'goodsId':goodid
+	var goodDetail = {
+		init:function(){
+			var _this = this;
+			//判断是否为微信浏览器 
+			if(_this.is_weixin()){
+				//获取openid
+				_this.getOpenId();
+			}
+			_this.getGoodDetail();
+			$('#createOrder').on('click',function(e){
+				e.stopPropagation();
+				//存储商品id
+				var goodid = _this.getUrlParam('goods_id');
+				window.localStorage.setItem("goods_id",goodid);
+				//存储购买数量
+				window.localStorage.setItem("buyNum",$('.num').val())
+				
+				var token = window.localStorage.getItem('access_token');
+				var phone = window.localStorage.getItem('phone');
+				//判断是否登陆
+				if(token&&phone){
+					//
+					_this.getUserId(token,phone);
+				}else{
+					window.location.href = "./phoneCheck.html";
+				}
+			})
 		},
-		function(res){
-			//console.log(resa);
-			//var res = JSON.parse(resa);
-			//console.log(res)
+		getUrlParam:function(name){
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if (r != null)
+			return unescape(r[2]);
+			return null; //返回参数值
+		},
+		is_weixin:function(){
+			var ua = navigator.userAgent.toLowerCase();
+	        if(ua.match(/MicroMessenger/i)=="micromessenger") {
+	                return true;
+	        } else {
+	                return false;
+	        }
+		},
+		getOpenId:function(){
+			var _this = this;
+			var code  = _this.getUrlParam('code');
+			$.ajax({
+				type	:	"get",
+				url		:	api+'v1/api/weixin/getOpenId?code='+code,
+				async	:	false,
+				success	:	function(res){
+					var datas 		= 	res.datas;
+					var headimgurl 	= 	datas.headimgurl;
+					var openid 		= 	datas.openid;
+					var nickname 	= 	datas.nickname;
+					//存储openid；
+					window.localStorage.setItem('openid',openid);
+					alert('openid---'+openid);
+				}
+			});
+		},
+		//获取用户id
+		getUserId:function(token,phone){
+			var _this = this;
+			$.ajax({
+				type	: 	"post",
+						
+				url		: 	api+"v1/api/users/getUserByLoginName", 
+				data	:	{
+					  			'loginName':phone,
+					  			'thirdType':' '
+							},
+				headers : 	{
+								'Authorization': 'Bearer '+token,
+								'Content-Type': 'application/x-www-form-urlencoded'
+							},
+				complete:	function(res){_this.getUserIdCallback(res) }
+			})
+		},
+		getUserIdCallback:function(res){
+//			console.log(res.status);
+			if(res.status==200){
+			      	//获取用户的登录信息
+				var buyerInfo = JSON.parse(res.responseJSON.user);
+//				console.log(buyerInfo);
+				//存储买家id
+				window.localStorage.setItem('userId',buyerInfo.userId);
+				window.location.href = './order.html';
+			}else{
+				window.location.href = "./phoneCheck.html";
+			}
+		},
+		//获取商品详情
+		getGoodDetail:function(){
+			var _this  = this;
+			var goodid = _this.getUrlParam('goods_id');
+			$.ajax({
+				type 	: 'get',
+				url  	: api+'v1/api/shop/goods/'+goodid,
+				async	: false,
+				success	: function(res){_this.goodDetailCallback(res)}
+			})
+		},
+		//商品详情回调
+		goodDetailCallback:function(res){
 			var data = res.datas;
-			//console.log(data);
-			
 			//动态创建轮播图
 			for(var i = 0; i<data.goodsImages.length/3; i++){
-				var imgIndex = 3*i+2;
-				
-				//console.log(imgLink);
-				var bannerHtml = '<div class="swiper-slide"><img src="" alt="" /></div>'
+				var imgIndex 	= 	3*i+2;
+				var bannerHtml 	= 	'<div class="swiper-slide"><img src="" alt="" /></div>'
 				
 				$('.swiper-wrapper').append(bannerHtml);
 				$('img','.swiper-slide').eq(i).attr('src',imgLink+data.goodsImages[imgIndex].imgName);
 			}
 			//轮播图js
 			new Swiper ('.swiper-container', {
-					    direction: 'horizontal',
-					    autoplay: 2500,
+					    direction	: 'horizontal',
+					    autoplay	: 2500,
 					    // 分页器
-					    pagination: '.swiper-pagination',
-					    autoplayDisableOnInteraction:false,
+					    pagination	: '.swiper-pagination',
+	    				autoplayDisableOnInteraction:false,
 					  }) 
 			//保存商品运费
 			window.localStorage.setItem('expressCost',data.expressCost);
@@ -71,13 +145,13 @@ define(['jquery','swiper','param'],function($){
 			$('span','.arriveTime').html(data.arrivalDays);
 			//卖家头像
 			var url = data.userDTO.icon;
-			//console.log(typeof(url));
+
 			if(url.indexOf('http')>-1){
 				url = url;
-				//console.log('1'+"  ---  "+url);
+
 			}else{
 				url = imgLink+url;
-				//console.log('2'+"  ---  "+url);
+
 			}
 			//console.log(url);
 			$('.userIcon').css('background-image','url('+url+')');
@@ -91,11 +165,10 @@ define(['jquery','swiper','param'],function($){
 			//粉丝人数
 			$('.fans').html(data.userDTO.fans_count);
 			//商品信息
-			//console.log(data.goodsDetails[0].detailImg);
-			//console.log(data.goodsDetails.length)
+
 			for(var i = 0; i<data.goodsDetails.length; i++){
 				var detailLink =imgLink+data.goodsDetails[i].detailImg;
-				//console.log(detailLink);
+
 				$('.info').append('<img src="'+detailLink+'"/>')
 			}
 			
@@ -137,48 +210,8 @@ define(['jquery','swiper','param'],function($){
 			//购买说明
 			//console.log(data.buyExplain)
 			$('.buyexplain').html(data.buyExplain);
-			
-			//点击规格里的下单按钮     存储数据并跳转；
-			$('#createOrder').click(function(e){
-				e.stopPropagation();
-				//存储商品id
-				window.localStorage.setItem("goods_id",goodid);
-				//存储购买数量
-				window.localStorage.setItem("buyNum",$('.num').val())
-				var token = window.localStorage.getItem('access_token');
-				var phone = window.localStorage.getItem('phone');
-				if(token&&phone){
-					$.ajax({ 
-						type: "post",
-						//crossDomain:true,
-						//url: "http://service.myzhenzhen.com/zzht/v1/api/users/getUserByLoginName", 
-						url: api+"v1/api/users/getUserByLoginName", 
-						data:{
-							  'loginName':phone,
-							  'thirdType':' '
-							},
-						headers : {
-							'Authorization': 'Bearer '+token,
-							'Content-Type': 'application/x-www-form-urlencoded'
-						},
-					    complete: function (res) {
-							console.log(res.status);
-								if(res.status==200){
-								      	//获取用户的登录信息
-									var buyerInfo = JSON.parse(res.responseJSON.user);
-									console.log(buyerInfo);
-									//存储买家id
-									window.localStorage.setItem('userId',buyerInfo.userId);
-									window.location.href = './order.html';
-								}else{
-									window.location.href = "./phoneCheck.html";
-								}
-					    }//complete
-					});
-				}else{
-					window.location.href = "./phoneCheck.html";
-				}
-				
-			})
-		})
+		}//callback;
+		
+	}
+	return goodDetail;
 })

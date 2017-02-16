@@ -17,7 +17,7 @@ require([
 			],
 			function($,Swiper,detailAjax){
 				
-
+				detailAjax.init();
 //				$('#mask').css('width',$(document).width());
 //				$('#mask').css('height',$(document).height());
 				$('.popUp').css('display','none');

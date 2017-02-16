@@ -10,10 +10,11 @@ window.onresize = function(){
 	html.style.fontSize = fontSize + "px";
 }
 
-require(['jquery','orderAjax'],function($){
+require(['jquery','orderAjax'],function($,CreateOrder){
 	
 	//订单页的商品信息
 		//从localstorage里获取图片地址
+	CreateOrder.init();
 	var imgurl = window.localStorage.getItem('imgurl');
 	$('img','.imgbox').attr('src',imgurl);
 		//从localstorage里获取商品名称；
