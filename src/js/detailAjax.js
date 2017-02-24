@@ -1,17 +1,26 @@
-define(['jquery','swiper','param'],function($){
+define(['jquery','param','swiper'],function($,param,swiper){
 	var goodDetail = {
 		init:function(){
 			var _this = this;
+			var goodid = _this.getUrlParam('goods_id');
 			//判断是否为微信浏览器 
-			if(_this.is_weixin()){
-				//获取openid
-				_this.getOpenId();
-			}
+//			if(_this.is_weixin()){
+//				//获取openid
+//				_this.getOpenId();
+//			}
 			_this.getGoodDetail();
 			$('#createOrder').on('click',function(e){
 				e.stopPropagation();
 				//存储商品id
-				var goodid = _this.getUrlParam('goods_id');
+				var goodparam = {
+					"detailData":{
+							"linkType":"app-inner",
+						    "name" : "to_goods_"+goodid,
+						}
+				}
+				var goodParam = JSON.stringify(goodparam);2
+				_this.callapp(goodParam);
+				
 				window.localStorage.setItem("goods_id",goodid);
 				//存储购买数量
 				window.localStorage.setItem("buyNum",$('.num').val())
@@ -26,6 +35,33 @@ define(['jquery','swiper','param'],function($){
 					window.location.href = "./phoneCheck.html";
 				}
 			})
+			
+		},
+		callapp:function(Obj){
+			var u = navigator.userAgent;
+			var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+			var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+			if(isAndroid){
+	//			window.location.href = "web://zzht.com?"+Obj;
+	//			setTimeout(function(){
+	//				window.location.href = 'http://dwz.cn/3JaeDJ';
+	//			},500)
+		 	 	var state = null;
+			    try {
+			      	state = window.open("web://zzht.com?"+Obj, '_blank');
+			    } catch(e) {console.log(e)}
+			    if (state) {
+			      	window.close();
+			    } else {
+			      window.location = "http://dwz.cn/3JaeDJ";
+			    }
+	//			window.location.href = 'http://dwz.cn/3JaeDJ';
+	//			alert(1);
+			}else{
+				window.location.href = "zzht://"+Obj;
+				window.location.href = 'http://dwz.cn/3JaeDJ';
+				console.log('obj------'+Obj);
+			}
 		},
 		getUrlParam:function(name){
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -47,7 +83,7 @@ define(['jquery','swiper','param'],function($){
 			var code  = _this.getUrlParam('code');
 			$.ajax({
 				type	:	"get",
-				url		:	api+'v1/api/weixin/getOpenId?code='+code,
+				url		:	param.api+'v1/api/weixin/getOpenId?code='+code,
 				async	:	false,
 				success	:	function(res){
 					var datas 		= 	res.datas;
@@ -56,7 +92,7 @@ define(['jquery','swiper','param'],function($){
 					var nickname 	= 	datas.nickname;
 					//存储openid；
 					window.localStorage.setItem('openid',openid);
-					alert('openid---'+openid);
+//					alert('openid---'+openid);
 				}
 			});
 		},
@@ -66,7 +102,7 @@ define(['jquery','swiper','param'],function($){
 			$.ajax({
 				type	: 	"post",
 						
-				url		: 	api+"v1/api/users/getUserByLoginName", 
+				url		: 	param.api+"v1/api/users/getUserByLoginName", 
 				data	:	{
 					  			'loginName':phone,
 					  			'thirdType':' '
@@ -97,13 +133,15 @@ define(['jquery','swiper','param'],function($){
 			var goodid = _this.getUrlParam('goods_id');
 			$.ajax({
 				type 	: 'get',
-				url  	: api+'v1/api/shop/goods/'+goodid,
+				url  	: param.api+'v1/api/shop/goods/'+goodid,
 				async	: false,
 				success	: function(res){_this.goodDetailCallback(res)}
 			})
 		},
 		//商品详情回调
 		goodDetailCallback:function(res){
+			var _this = this;
+			console.info(res);
 			var data = res.datas;
 			//动态创建轮播图
 			for(var i = 0; i<data.goodsImages.length/3; i++){
@@ -111,7 +149,7 @@ define(['jquery','swiper','param'],function($){
 				var bannerHtml 	= 	'<div class="swiper-slide"><img src="" alt="" /></div>'
 				
 				$('.swiper-wrapper').append(bannerHtml);
-				$('img','.swiper-slide').eq(i).attr('src',imgLink+data.goodsImages[imgIndex].imgName);
+				$('img','.swiper-slide').eq(i).attr('src',param.imgLink+data.goodsImages[imgIndex].imgName);
 			}
 			//轮播图js
 			new Swiper ('.swiper-container', {
@@ -150,7 +188,7 @@ define(['jquery','swiper','param'],function($){
 				url = url;
 
 			}else{
-				url = imgLink+url;
+				url = param.imgLink+url;
 
 			}
 			//console.log(url);
@@ -167,7 +205,7 @@ define(['jquery','swiper','param'],function($){
 			//商品信息
 
 			for(var i = 0; i<data.goodsDetails.length; i++){
-				var detailLink =imgLink+data.goodsDetails[i].detailImg;
+				var detailLink =param.imgLink+data.goodsDetails[i].detailImg;
 
 				$('.info').append('<img src="'+detailLink+'"/>')
 			}
@@ -178,9 +216,9 @@ define(['jquery','swiper','param'],function($){
 				$('input','.c_box').eq(i).attr('value',data.goodsSizes[i].name);
 			}
 			//规格图片
-			$('.title').children('.imgbox').children().attr('src',imgLink+data.goodsImages[2].imgName);
+			$('.title').children('.imgbox').children().attr('src',param.imgLink+data.goodsImages[2].imgName);
 			//存储图片url
-			window.localStorage.setItem("imgurl",imgLink+data.goodsImages[2].imgName);
+			window.localStorage.setItem("imgurl",param.imgLink+data.goodsImages[2].imgName);
 			//默认存储第一个规格id
 			window.localStorage.setItem("sizeId",data.goodsSizes[0].sizeId);
 			//默认存储第一个规格商品单价
@@ -210,6 +248,19 @@ define(['jquery','swiper','param'],function($){
 			//购买说明
 			//console.log(data.buyExplain)
 			$('.buyexplain').html(data.buyExplain);
+			
+			$('.userInfo').on('click',function(){
+				var sellerId = data.userDTO.userId;
+				console.log(sellerId);
+				var sellerparam = {
+					"detailData":{
+						"linkType":"app-inner",
+					    "name" : "sellerVC_"+sellerId,
+					}
+				}
+				var sellerParam = JSON.stringify(sellerparam);
+				_this.callapp(sellerParam);
+			})
 		}//callback;
 		
 	}

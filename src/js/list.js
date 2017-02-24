@@ -10,22 +10,14 @@ window.onresize = function(){
 }
 
 require(['jquery','param'],function($){
-	
-	//var api = 'http://192.168.199.127/zzht/';
-	//var api = 'http://zhenzhen.s1.natapp.cc/zzht/';
-	//var api = 'http://service.myzhenzhen.com/zzht/';
-	//var imgLink = 'http://o6uda1nl0.bkt.clouddn.com/';//内网
-	//var imgLink = 'http://7xrr05.com1.z0.glb.clouddn.com/';//外网
+
 	var liveId = getUrlParam('liveId');
 	var userId = getUrlParam('userId');
 	var coverImg = getUrlParam('coverImg');
-//	var liveId = window.localStorage.getItem('liveId');
-//	var userId = window.localStorage.getItem('userId');
-//	var coverImg = window.localStorage.getItem('coverImg');
 	$('img','header').attr('src',coverImg);
 	$.ajax({
 		type:"get",
-		url:api+"v1/api/live/"+liveId+"?userId="+userId,
+		url:param.api+"v1/api/live/"+liveId+"?userId="+userId,
 		success:function(res){
 			//console.log(res.datas.goods)
 			console.log(res);

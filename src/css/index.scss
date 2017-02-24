@@ -1,0 +1,391 @@
+@charset "utf-8";
+@import "reset.scss";
+@import "./swiper.min.css";
+@font-face {
+  font-family: 'iconfont';  /* project id 237407 */
+  src: url('//at.alicdn.com/t/font_m0kk6rdmjx20529.eot');
+  src: url('//at.alicdn.com/t/font_m0kk6rdmjx20529.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_m0kk6rdmjx20529.woff') format('woff'),
+  url('//at.alicdn.com/t/font_m0kk6rdmjx20529.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_m0kk6rdmjx20529.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img{
+    display:block;
+    width:100%;
+}
+html, body{
+    width:100%;
+    height:100%;
+} 
+.wrapper{
+    overflow-x: hidden;
+    background:#f1f1f1;
+    height:100%;
+    header{
+        position:fixed;
+        width:100%;
+        top:0;
+        left:0;
+        z-index: 98;
+        background:#fff;
+        overflow:hidden;
+        height:1.7rem;
+        .top{
+            .serachbox{
+                box-sizing: border-box;
+                padding-left:.3rem;
+                padding-top:.2rem;
+                margin-bottom: .2rem;
+                overflow:hidden;
+                .serach{
+                    border-radius: 5px;
+                    width:5.8rem;
+                    height:.56rem;
+                    border:1px solid #666;
+                    background:#eaebed;
+                    float:left;
+                    box-sizing: border-box;
+                }
+                span{
+                    float:left;
+                    height:.56rem;
+                    line-height:.56rem;
+                    text-align:center;
+                    width:1.3rem;
+                    color:#444;
+                    
+                }
+            }
+            .nav_scroll{
+                position:absolute;
+                top:.96rem;
+                left:0;
+                width:100%;
+                height:.7rem;
+                border-top:1px solid #e1e1e1;
+                border-bottom:1px solid #e1e1e1;
+            }
+            nav{
+                height:.7rem;
+                overflow-y:hidden;
+                
+                position: absolute;
+                z-index: 1;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                width:8.4rem;
+                -webkit-transform: translateZ(0);
+                -moz-transform: translateZ(0);
+                -ms-transform: translateZ(0);
+                -o-transform: translateZ(0);
+                transform: translateZ(0);
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -webkit-text-size-adjust: none;
+                -moz-text-size-adjust: none;
+                -ms-text-size-adjust: none;
+                -o-text-size-adjust: none;
+                text-size-adjust: none;
+                
+                ul{
+                    width:200%;
+                    overflow-y:hidden;
+                    height:.7rem;
+                    li{
+                        float:left;
+                        height:.7rem;
+                        line-height:.7rem;
+                        box-sizing: border-box;
+                        padding:0 .2rem;
+                        width:1.6rem;
+                        text-align:center;
+                    }
+                    li.act{
+                        color:#F13B51;
+                    }
+                }
+            }
+        }
+    }
+    #scroll{
+        position:absolute;
+        top:1.7rem;
+        bottom:1rem;
+        left:0;
+        width:100%;
+        right:0;
+        overflow:hidden;
+        #scroller{
+            position: absolute;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            width: 100%;
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            -o-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+            -o-text-size-adjust: none;
+            text-size-adjust: none;
+            #scroller-pullUp {
+                background: #fff;
+                height: .4rem;
+                line-height: .4rem;
+                padding: .05rem .1rem;
+                font-weight: bold;
+                font-size: .14rem;
+                color: #888;
+                text-align: center;
+                position: absolute;
+                left: 0;
+                width: 100%;
+                bottom:-0.4rem;
+                
+                .pull-up-icon {
+                    display: inline-block;
+                    color: red;
+                    font-size: 1.4;
+                    -webkit-transform: rotate(0);
+                    -webkit-transition-property: -webkit-transform;
+                    -webkit-transition-duration: 500ms
+                }
+                .pull-up-icon.reverse_icon {
+                    -webkit-transform: rotate(-180deg)
+                }
+            }
+        }
+        .banner{
+            background:#fff;
+            .swiper-container{
+                width:100%;
+                height:5rem;
+                
+            }
+        }
+        .iconBox{
+            background:#fff;
+            height:1.6rem;
+            width:100%;
+            box-sizing: border-box;
+            padding:.24rem;
+            display:flex;
+            .homeIcon{
+                flex:auto;
+                .imgBox{
+                    width:.82rem;
+                    margin:0 auto;
+                    height:1.11rem;
+                }
+            }
+         
+        }
+        .imgNav{
+            width:100%;
+            height:4.1rem;
+            overflow:hidden;
+            margin-bottom:.2rem;
+            .imgNavLfet{
+                width:3.76rem;
+                box-sizing: border-box;
+                height:4.1rem;
+                float:left;
+                border-right:0.02rem solid #f1f1f1;
+            }
+            .imgNavRight{
+                width:3.74rem;
+                height:4.1rem;
+                box-sizing: border-box;
+                float:left;
+                .img_rtop{
+                    width:3.74rem;
+                    height:2.04rem;
+                    border-bottom:.02rem solid #f1f1f1;
+                }
+                .img_rbottom{
+                    width:3.74rem;
+                    height:2.04rem;
+                    
+                }
+            }
+        }
+        .live{
+            ul{
+                .live_item{
+                    width:100%;
+                    height:7.5rem;
+                    position:relative;
+                    background-size: 7.5rem;
+                    margin-bottom:.2rem;
+                    
+                    .liveIcon{
+                        width:1.44rem;
+                        height:.39rem;
+                        position:absolute;
+                        right:.2rem;
+                        top:.2rem;
+                        border-radius: 5px;
+                        background-color: rgba(0,0,0,0.3);
+                        background-image: url(http://og20zwqwb.bkt.clouddn.com/playbackicon.png);
+                        background-size: .61rem;
+                        background-position: .14rem center;
+                        background-repeat: no-repeat;
+                        box-sizing: border-box;
+                        padding-left:.77rem;
+                        color:#fff;
+                        font-size:.1rem;
+                        line-height:.39rem;
+                        text-align:center;
+                    }
+                    .location{
+                        position:absolute;
+                        right:.2rem;
+                        top:.7rem;
+                        width:1.44rem;
+                        box-sizing:border-box;
+                        height:.39rem;
+                        background-image: url(http://og20zwqwb.bkt.clouddn.com/location2.png);
+                        background-size:.2rem;
+                        background-position:.1rem center;
+                        background-repeat:no-repeat;
+                        color:#666;
+                        padding-left:.32rem;
+                        font-size:.1rem;
+                        line-height:.4rem;
+                        text-align:left;
+                        
+                    }
+                    .userInfo{
+                        padding:.08rem;
+                        border-radius: 4px;
+                        overflow:hidden;
+                        position:absolute;
+                        left:.46rem;
+                        bottom:1.8rem;
+                        height:.46rem;
+                        background: linear-gradient( left, rgba(255,0,0,0.6), rgba(255,0,0,0));
+                        .headicon{
+                            width:.46rem;
+                            height:.46rem;
+                            background:yellowgreen;
+                            border-radius: 50%;
+                            float:left;
+                            img{
+                                border-radius: 50%;
+                            }
+                        }
+                        .nickname{
+                            float:left;
+                            padding-left:.1rem;
+                            padding-right:.3rem;
+                            height:.46rem;
+                            line-height:.46rem;
+                            font-size:.2rem;
+                            background:url(http://og20zwqwb.bkt.clouddn.com/labaicon.png) no-repeat right center;
+                            background-size: .21rem .18rem;
+                            color:#fff;
+                        }
+                        .live_title{
+                            float:left;
+                            overflow: hidden;
+                            text-overflow:ellipsis;
+                            white-space: nowrap;
+                            width:3.36rem;
+                            height:100%;
+                            line-height:.46rem;
+                            padding-left:.05rem;
+                            color:#fff;
+                            font-size:.2rem;
+                        }
+                    }
+                    .goodsbox{
+                        width:100%;
+        
+                        position:absolute;
+                        bottom:.46rem;
+                        left:.22rem;
+                        .goods_scroll{
+                            .goodsInfo{
+                                
+//                              float:left;
+                                position:relative;
+                                overflow:hidden;
+                                border-radius: 5px;
+                                background:#fff;
+                                height:1rem;
+                                box-sizing: border-box;
+                                padding:.1rem;
+                                width:2.8rem;
+                                padding-left:1rem;
+                                .goodImg{
+                                    position:absolute;
+                                    top:.1rem;
+                                    left:.1rem;
+                                    width:.8rem;
+                                    height:.8rem;
+                                    float:left;
+                                    overflow:hidden;
+                                    img{
+                                        height:100%;
+                                        
+                                    }
+                                }
+                                .good_detail{
+                                    float:left;
+                                    width:100%;
+                                    .goodname{
+                                        width:100%;
+                                        font-size:.2rem;
+                                        line-height:.25rem;
+                                        height:.5rem;
+                                        overflow:hidden;
+                                        display: -webkit-box;
+                                        -webkit-box-orient: vertical;
+                                        -webkit-line-clamp: 2;
+                                    }
+                                    .goodprice{
+                                        font-size:.3rem;
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }   
+ 
+    .bottomNav{
+        background:#fff;
+        width:100%;
+        height:1rem;
+        position:fixed;
+        bottom:0;
+        left:0;
+        z-index: 99;
+        display:flex;
+        button{
+            display:block;
+            flex:auto;
+            background:#fff;
+            font-size:.4rem;
+            
+        }
+    }
+}

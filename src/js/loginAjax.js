@@ -1,6 +1,5 @@
-define(['jquery','param'],function($){
-	//var api = 'http://192.168.199.127/zzht/'
-	//var api = 'http://service.myzhenzhen.com/zzht/'
+define(['jquery','param'],function($,param){
+
 	function check(){
 		$('#logIn').click(function(){
 				
@@ -27,7 +26,7 @@ define(['jquery','param'],function($){
 					}
 					//代理跨域
 					$.ajax({
-						url:api+'oauth/token',
+						url:param.api+'oauth/token',
 						//url:'http://service.myzhenzhen.com/zzht/oauth/token',
 						type:'post',
 						data:{
@@ -62,8 +61,8 @@ define(['jquery','param'],function($){
 							$.ajax({ 
 								type: "post",
 								//crossDomain:true,
-								//url: "http://service.myzhenzhen.com/zzht/v1/api/users/getUserByLoginName", 
-								url: api+"v1/api/users/getUserByLoginName", 
+								
+								url: param.api+"v1/api/users/getUserByLoginName", 
 								
 								data:{
 									  'loginName':phoneNum,

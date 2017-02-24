@@ -1,8 +1,5 @@
-define(['jquery','param'], function() {
-//	//
-//	//var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
-//	//var api = 'http://192.168.199.127/zzht/'
-//	var api = 'http://service.myzhenzhen.com/zzht/'
+define(['jquery','param'], function($,param) {
+
 	var userId = window.localStorage.getItem('userId');
 	var token = window.localStorage.getItem('access_token');
 	$('#add').click(function(e) {
@@ -22,7 +19,7 @@ define(['jquery','param'], function() {
 			$(this).attr('disabled','disabled');
 			$(this).css('background','#858585')
 			$(this).html('正在保存您收货信息...');
-			var param = JSON.stringify(
+			var paramss = JSON.stringify(
 				{"address":{
 							"userId": userId,
 							"addressName": $('#choose').val() + $('#detailarea').val(),
@@ -37,10 +34,9 @@ define(['jquery','param'], function() {
 			//console.log(param);
 			$.ajax({
 				type: "post",
-				//url: "http://service.myzhenzhen.com/zzht/v1/api/shop/address",
-				url: api+"v1/api/shop/address",
-				async: true,
-				data:param,
+				url: param.api+"v1/api/shop/address",
+				async: false,
+				data:paramss,
 				headers: {
 					'Authorization': 'Bearer ' + token,
 					'Content-Type': 'application/json'

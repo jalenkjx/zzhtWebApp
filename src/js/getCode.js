@@ -1,7 +1,4 @@
-define(['jquery','param'],function($){
-	//var api = 'http://192.168.199.127/zzht/'
-	//var api = 'http://zhenzhen.s1.natapp.cc/zzht/'
-	//var api = 'http://service.myzhenzhen.com/zzht/'
+define(['jquery','param'],function($,param){
 	
 		$('#phoneNum').on('blur',function(){
 			if($('#phoneNum').val()!=''){
@@ -31,7 +28,7 @@ define(['jquery','param'],function($){
 		});
 		function getCode(){
 			$.ajax({
-				url:api+'v1/api/verifycode/quickSend',//获取验证码接口
+				url:param.api+'v1/api/verifycode/quickSend',//获取验证码接口
 				data:{
 					phoneNumber:$('#phoneNum').val()
 				},
@@ -82,7 +79,7 @@ define(['jquery','param'],function($){
 			}else{
 				$('.sure').html('正在登录');
 				$.ajax({
-					url:api+'oauth/token',
+					url:param.api+'oauth/token',
 					data:{
 						"username":'phoneCode##86##'+username+'##'+ip,
 						"password":pass,
@@ -114,9 +111,7 @@ define(['jquery','param'],function($){
 						var token = window.localStorage.getItem('access_token');
 						$.ajax({ 
 							type: "post",
-							//crossDomain:true,
-							//url: "http://service.myzhenzhen.com/zzht/v1/api/users/getUserByLoginName", 
-							url: api+"v1/api/users/getUserByLoginName", 
+							url: param.api+"v1/api/users/getUserByLoginName", 
 							data:{
 								  'loginName':username,
 								  'thirdType':' '

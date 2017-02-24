@@ -1,5 +1,6 @@
 //该模块获取收货地址   结算
-define(['jquery','pingpp','param'],function($,pingpp){
+define(['jquery','pingpp','param'],function($,pingpp,param){
+	console.log(param);
 	var createOrder={
 		init	:	function(){
 			var _this = this;
@@ -21,8 +22,11 @@ define(['jquery','pingpp','param'],function($,pingpp){
 				}
 			})
 		},
+		//读取用户名
 		userId	:	window.localStorage.getItem("userId"),
+		//读取token
 		token	:	window.localStorage.getItem('access_token'),
+		//读取卖家id
 		sellerId:	window.localStorage.getItem('sellerId'),
 		//默认渠道为alipay;
 		channel	:	'alipay_wap',
@@ -52,7 +56,7 @@ define(['jquery','pingpp','param'],function($,pingpp){
 			var _this = this;
 			$.ajax({
 				type	:	"get",
-				url		:	api+"v1/api/shop/address/user/"+_this.userId,
+				url		:	param.api+"v1/api/shop/address/user/"+_this.userId,
 				async	:	false,
 				headers	:	{
 					'Authorization':'Bearer '+_this.token
@@ -107,7 +111,7 @@ define(['jquery','pingpp','param'],function($,pingpp){
 		   	});
 		   	$.ajax({
 		   		type	:	"post",
-		   		url		:	api+"v1/api/shop/order/preview",
+		   		url		:	param.api+"v1/api/shop/order/preview",
 		   		async	:	false,
 		   		data	:	beforeOrder,
 		   		headers	:	{
@@ -179,7 +183,7 @@ define(['jquery','pingpp','param'],function($,pingpp){
 			var _this = this;
 			$.ajax({
 				type:"POST",
-				url:api+"v1/api/shop/order",
+				url:param.api+"v1/api/shop/order",
 				data:order,
 				crossDomain: true,
 				dataType:'json',
