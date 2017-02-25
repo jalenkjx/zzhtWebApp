@@ -6,7 +6,7 @@ define(['jquery','param'],function($,param){
 				url:param.api+"v1/api/domain/get_domains",
 				async:false,
 				success:function(res){
-					console.log(res);//27;
+//					console.log(res);//27;
 				}
 			});
 		}

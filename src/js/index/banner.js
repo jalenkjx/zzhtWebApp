@@ -7,7 +7,7 @@ define(['jquery','param','swiper'],function($,param){
 				url:param.api+"v1/api/domain/get_banners",
 				async:false,
 				success:function(res){
-					console.log(res);
+//					console.log(res);
 					$.each(res.datas,function(key,item){
 						var bannerHtml 	= 	'<div class="swiper-slide"><img src="'+item.imgSrc+'" alt="" /></div>';
 						$('.swiper-wrapper','.banner').append(bannerHtml);

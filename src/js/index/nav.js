@@ -8,16 +8,16 @@ define(['jquery','param','iscroll','index/liveList'],function($,param,IScroll,li
 				url:param.api+"v1/api/livesCatalogue/data?type=2",
 				async:false,
 				success:function(res){
-					console.log(res);
+//					console.log(res);
 					var len = res.datas.livesCatalogues.length;
-					console.log(len);
+//					console.log(len);
 					$('nav').width(1.6*len+'rem');
 					var html = '';
 					$.each(res.datas.livesCatalogues, function(key,item) {
 						html += '<li class="nav_item" data-id='+item.id+'>'+item.name+'</li>';
 					});
 					$('nav','.nav_scroll').children('ul').append(html);
-					
+					$('.nav_item').eq(0).addClass('act');
 					_this.load();
 				}
 			});

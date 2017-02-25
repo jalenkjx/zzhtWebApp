@@ -5,7 +5,7 @@ define(['jquery'],function(){
 		imgLink : 'http://o6uda1nl0.bkt.clouddn.com/',//内网
 //		imgLink : 'http://img.myzhenzhen.com/',//外网
 	}
-	console.log(param.imgLink);
+//	console.log(param.imgLink);
 	return param;
 //	console.log(param.imgLink);
 	 //api = 'http://zhenzhen.s1.natapp.cc/zzht/';

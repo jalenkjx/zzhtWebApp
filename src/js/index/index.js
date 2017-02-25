@@ -15,33 +15,34 @@ require(['jquery',
 		'index/nav',
 		'index/banner',
 		'index/liveList',
-		'index/domains',
-		'index/loadmore'
+		'index/domains'
 		],
-		function($,param,swiper,nav,banner,liveList,domains,loadmore){
+		function($,param,swiper,nav,banner,liveList,domains){
 			nav.livesCatalogues();
 			banner.bannerImg();
-			liveList.live_recommend(0);
+			liveList.live_recommend(0,0);
 			domains.domains();
-			loadmore.load();
+			liveList.load();
 			
 			$('.nav_item').on('click',function(){
+				
 				$(this).addClass('act').siblings().removeClass('act');
 				$('ul','.live').empty();
 				var id = $(this).attr('data-id');
 				console.log(id);
-				console.log($(this).index());
+				$('.live').attr('data-fl',$(this).html());
+				$('.live').attr('data-id',id);
 				if($(this).index()!=0){
 					$('.banner').css('display','none');
 					$('.iconBox').css('display','none');
 					$('.imgNav').css('display','none');
-					
+					liveList.live_other(id,0,0)
 				}else{
 					$('.banner').css('display','block');
 					$('.iconBox').css('display','flex');
 					$('.imgNav').css('display','block');
-					live.live_recommend(0);
+					liveList.live_recommend(0,0);
 				}
-				loadmore.myScroll.refresh();
+				liveList.myScroll.refresh();
 			})
 })
