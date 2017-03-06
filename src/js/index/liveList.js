@@ -1,11 +1,15 @@
 //根据分类id获取直播列表模块
 define(['jquery','param','swiper','iscroll'],function($,param,Swiper,IScroll){
 	return {
-		live_recommend:function(num,count){
+		//推荐和国家馆直播列表
+		live_recommend:function(num,count,country){
+			if($('#pullUp-msg').html()=='已经到底了'){
+				return;
+			}
 			var _this = this;
 			$.ajax({
 				type:"get",
-				url:param.api+'v1/api/live/lives?start='+num, 				
+				url:param.api+'v1/api/live/lives?start='+num+'&country='+country, 				
 				async:false,
 				success:function(res){
 //					console.log(res);
@@ -13,12 +17,49 @@ define(['jquery','param','swiper','iscroll'],function($,param,Swiper,IScroll){
 				}
 			})
 		},
-		live_other:function(id,num,count){
+		//最新接口
+		live_new:function(num,count){
+			var _this = this;
+			if($('#pullUp-msg').html()=='已经到底了'){
+				return;
+			}
+			$.ajax({
+				type:'get',
+				url:param.api+'v1/api/live/new/lives?start='+num,
+				async:false,
+				success:function(res){
+					_this.callback(res,count);
+				}
+			})
+		},
+		//国家馆接口
+		live_country:function(){
 			var _this = this;
 			$.ajax({
 				type:"get",
-				url:param.api+"v1/api/live/lives/"+id+'?app_version=1.9.14&start='+num,
-				 				
+				url:param.api+'v1/api/live/countrys',
+				async:false,
+				success:function(res){
+					console.log(res);
+					//国家馆banner
+					$('.imgban').children('img').attr('src',param.imgLink+res.datas[0].countryImg);
+					var html = '';
+					for(var i = 1; i<res.datas.length; i++){
+						html += '<li class="countryItem" data-val="'+res.datas[i].countryValue+'"><img src="'+param.imgLink+res.datas[i].countryImg+'" alt="" /></li>'
+					}
+					$('.countryList').html(html);
+				}
+			})
+		},
+		//根据id获取直播列表
+		live_other:function(id,num,count){
+			if($('#pullUp-msg').html()=='已经到底了'){
+				return;
+			}
+			var _this = this;
+			$.ajax({
+				type:"get",
+				url:param.api+"v1/api/live/lives/"+id+'?app_version='+param.app_version+'&start='+num,	
 				async:false,
 				success:function(res){
 					_this.callback(res,count);
@@ -26,7 +67,7 @@ define(['jquery','param','swiper','iscroll'],function($,param,Swiper,IScroll){
 			});
 		},
 		callback:function(res,count){
-			console.log(res);
+//			console.log(res);
 			
 			$.each(res.datas,function(key,item){
 				var icon ='';
@@ -34,10 +75,8 @@ define(['jquery','param','swiper','iscroll'],function($,param,Swiper,IScroll){
 					icon = item.userDTO.icon;
 					if(icon.indexOf('http')>-1){
 						icon = icon;
-		
 					}else{
 						icon = param.imgLink+icon;
-		
 					}
 				}else{
 					icon = 'http://o7oo0fyx1.bkt.clouddn.com/default_icon.png';
@@ -134,7 +173,7 @@ define(['jquery','param','swiper','iscroll'],function($,param,Swiper,IScroll){
 				capture: false,
 				passive: false
 			} : false);
-		   _this. myScroll = new IScroll('#scroll', { probeType: 3, scrollY:true});
+		   _this. myScroll = new IScroll('#scroll', { probeType: 3, scrollY:true, click:true});
 		   	var _this = this;
 			var start = 0;
 			var count = 0;
@@ -146,21 +185,26 @@ define(['jquery','param','swiper','iscroll'],function($,param,Swiper,IScroll){
 	            if(y==maxY&&dist<-200){
 	            	count++;
 	            	start += 20;
-	            	var navitem = $('.live').attr('data-fl');
 	            	var id = $('.live').attr('data-id');
-	            	if(navitem == '推荐'){
-	            		_this.live_recommend(start,count);
-	            		this.refresh();
-	            	}else if(navitem == '国家馆'){
+	            	//推荐
+	            	if(id == '12345'){
+	            		_this.live_recommend(start,count,'all');
 	            		
+	            	//国家馆
+	            	}else if(id == '54321'){
+	            		if($('.live').css('display')!='none'){
+	            			var countryVal = $('.live').attr('data-val');
+	            			_this.live_recommend(start,count,countryVal);
+	            		}
+	            	//最新	
+	            	}else if(id=='22222'){
+	            		_this.live_recommend(start,count);
 	            	}else{
 	            		_this.live_other(id,start,count);
 	            	}
+	            	this.refresh();
 	            }
            	})
-		},
-		loadmore:function(){
-			
 		},
 		isPassive:function(){
 			var supportsPassiveOption = false;

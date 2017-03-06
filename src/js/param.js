@@ -4,6 +4,7 @@ define(['jquery'],function(){
 //		api : 'http://service.myzhenzhen.com/zzht/',
 		imgLink : 'http://o6uda1nl0.bkt.clouddn.com/',//内网
 //		imgLink : 'http://img.myzhenzhen.com/',//外网
+		app_version:'1.9.14'
 	}
 //	console.log(param.imgLink);
 	return param;

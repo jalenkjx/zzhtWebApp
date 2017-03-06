@@ -1,0 +1,64 @@
+@charset "utf-8";
+@import "reset.scss";
+html,body{
+    width:100%;
+    height:100%;
+}
+.wrapper{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#F0F0F0;
+    header{
+        height:1rem;
+        background:#fff;
+        text-align:center;
+        font-size:.4rem;
+        line-height:1rem;
+        font-weight:600;
+        
+    }
+    .userInfo{
+        margin-top:.2rem;
+        width:100%;
+        height:1.6rem;
+        box-sizing:border-box;
+        background:#fff;
+        border-bottom:1px solid #c8c7cc;
+        padding:.2rem;
+        overflow:hidden;
+        .imgbox{
+            float:left;
+            width:1.2rem;
+            height:1.2rem;
+            background:#f0f0f0;
+            border-radius: 50%;
+            margin-right:.26rem;
+            img{
+                width:100%;
+                height:100%;
+                border-radius:50%;
+                
+            }
+        }
+        .userDetail{
+            float:left;
+            width:5.5rem;
+            height:1.2rem;
+            .userName{
+                width:100%;
+                height:.6rem;
+                line-height:.6rem;
+                font-size:.3rem;
+                
+            }
+            .signature{
+                width:100%;
+                height:.6rem;
+                line-height:.6rem;
+                font-size:.3rem;
+                
+            }
+        }
+    }
+}

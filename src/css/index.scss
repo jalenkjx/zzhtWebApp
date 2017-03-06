@@ -1,21 +1,6 @@
 @charset "utf-8";
 @import "reset.scss";
 @import "./swiper.min.css";
-@font-face {
-  font-family: 'iconfont';  /* project id 237407 */
-  src: url('//at.alicdn.com/t/font_m0kk6rdmjx20529.eot');
-  src: url('//at.alicdn.com/t/font_m0kk6rdmjx20529.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_m0kk6rdmjx20529.woff') format('woff'),
-  url('//at.alicdn.com/t/font_m0kk6rdmjx20529.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_m0kk6rdmjx20529.svg#iconfont') format('svg');
-}
-.iconfont {
-  font-family:"iconfont" !important;
-  font-size:16px;
-  font-style:normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 img{
     display:block;
     width:100%;
@@ -366,6 +351,22 @@ html, body{
                             }
                         }
                     }
+                }
+            }
+        }
+        .country{
+            .imgban{
+                width:100%;
+            }
+            .countryList{
+                margin-top:.18rem;
+                width:7.7rem;
+                .countryItem{
+                    width:3.66rem;
+                    margin-right:.18rem;
+                    height:1.9rem;
+                    float:left;
+                    margin-bottom:.18rem;
                 }
             }
         }
