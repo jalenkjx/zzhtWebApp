@@ -3,16 +3,17 @@ define(['jquery','param','swiper','iscroll'],function($,param,Swiper,IScroll){
 	return {
 		//推荐和国家馆直播列表
 		live_recommend:function(num,count,country){
+//			console.log(param.api+'v1/api/live/lives?start='+num+'&country='+country);
 			if($('#pullUp-msg').html()=='已经到底了'){
 				return;
 			}
 			var _this = this;
 			$.ajax({
 				type:"get",
-				url:param.api+'v1/api/live/lives?start='+num+'&country='+country, 				
+				url:param.api+'v1/api/live/lives?start='+num+'&country='+country+'&app_version='+param.app_version, 				
 				async:false,
 				success:function(res){
-//					console.log(res);
+					console.log(res);
 					_this.callback(res,count);
 				}
 			})
@@ -53,6 +54,7 @@ define(['jquery','param','swiper','iscroll'],function($,param,Swiper,IScroll){
 		},
 		//根据id获取直播列表
 		live_other:function(id,num,count){
+			console.log(param.api+"v1/api/live/lives/"+id+'?app_version='+param.app_version+'&start='+num);
 			if($('#pullUp-msg').html()=='已经到底了'){
 				return;
 			}
@@ -62,13 +64,14 @@ define(['jquery','param','swiper','iscroll'],function($,param,Swiper,IScroll){
 				url:param.api+"v1/api/live/lives/"+id+'?app_version='+param.app_version+'&start='+num,	
 				async:false,
 				success:function(res){
+					console.log(res);
 					_this.callback(res,count);
 				}
 			});
 		},
 		callback:function(res,count){
 //			console.log(res);
-			
+			var _this = this;
 			$.each(res.datas,function(key,item){
 				var icon ='';
 				if(item.userDTO.icon){
@@ -165,6 +168,7 @@ define(['jquery','param','swiper','iscroll'],function($,param,Swiper,IScroll){
 				$('#pullUp-msg').html('已经到底了');
 				return;
 			}
+//			_this.myScroll.scrollToElement(document.querySelector('.live li:nth-child(1)'));
 		},
 		myScroll:null,
 		load: function(){

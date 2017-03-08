@@ -49,6 +49,8 @@ require(['jquery',
 				if($(this).attr('data-id')=='12345'){
 					$('.country').css('display','none');
 					$('#scroller-pullUp').css('display','block');
+					$('#pullUp-msg').html('加载更多');
+					$('.live ul').empty();
 					liveList.live_recommend(0,0,'all');
 					liveList.myScroll.scrollToElement(document.querySelector('.banner'));
 					
@@ -56,6 +58,8 @@ require(['jquery',
 				}else if($(this).attr('data-id')=='22222'){
 					$('.country').css('display','none');
 					$('#scroller-pullUp').css('display','block');
+					$('#pullUp-msg').html('加载更多');
+					$('.live ul').empty();
 					liveList.live_new(0,0);
 					liveList.myScroll.scrollToElement(document.querySelector('.live li:nth-child(1)'));
 				//54321 国家馆
@@ -66,6 +70,8 @@ require(['jquery',
 				}else{
 					$('.country').css('display','none');
 					$('#scroller-pullUp').css('display','block');
+					$('#pullUp-msg').html('加载更多');
+					$('.live ul').empty();
 					liveList.live_other(id,0,0);
 					liveList.myScroll.scrollToElement(document.querySelector('.live li:nth-child(1)'));
 					
@@ -74,12 +80,14 @@ require(['jquery',
 			
 				//国家馆点击
 				$('.countryItem').on('click',function(){
-					console.log('111');
+//					console.log('111');
 					$('.live').css('display','block');
 					$('#scroller-pullUp').css('display','block');
 					$('.live').attr('data-val',$(this).attr('data-val'));
 					var countryVal = $(this).attr('data-val');
 					$('.country').css('display','none');
+					$('#pullUp-msg').html('加载更多');
+					$('.live ul').empty();
 					liveList.live_recommend(0,0,countryVal);
 					liveList.myScroll.refresh();
 				})
